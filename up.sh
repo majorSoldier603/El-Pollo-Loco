@@ -1,12 +1,4 @@
 #!/bin/bash
-git branch
-echo The current branch that you worked on and want to commit ?
-read branch
-echo commit msg ?
-read commitmsg
-read -p "merge main ? [Y/n/M] " prompt
-
-
 # ----------------------------------
 # Colors
 # ----------------------------------
@@ -26,6 +18,17 @@ LIGHTBLUE='\033[1;34m'
 LIGHTPURPLE='\033[1;35m'
 LIGHTCYAN='\033[1;36m'
 WHITE='\033[1;37m'
+
+echo -e ${BLUE}Your current branch ${NOCOLOR}
+git branch
+echo The current branch that you worked on and want to commit ?
+read branch
+echo commit msg ?
+read commitmsg
+read -p "merge main ? [Y/n/M] " prompt
+
+
+
 
 if [[ $prompt == "y" || $prompt == "Y" || $prompt == "yes" || $prompt == "Yes" ]]; then
     echo yes
