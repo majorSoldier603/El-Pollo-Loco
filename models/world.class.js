@@ -14,12 +14,29 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.checkCollisions();
+        this.rund();
     }
 
     setWorld() {
         this.character.world = this;
     }
+
+    rund() {
+        setInterval(() => {
+
+            this.checkCollisions();
+            this.checkThrowOjects();
+        }, 200);
+    }
+
+    checkThrowOjects() {
+        if (this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+            this.throwableObjects.push(bottle)
+        }
+    }
+
+
 
     checkCollisions() {
         setInterval(() => {
