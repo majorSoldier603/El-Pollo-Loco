@@ -37,7 +37,6 @@ class World {
     }
 
 
-
     checkCollisions() {
         setInterval(() => {
             this.level.enemies.forEach((mo) => {
