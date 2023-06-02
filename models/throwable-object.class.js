@@ -14,12 +14,10 @@ class ThrowableObject extends MovableObject {
     trow(x, y) {
         this.x = x;
         this.y = y;
-        this.speedY = 30;
+        this.speedY = 10;
         this.applyGravity();
         setInterval(() =>{
-            console.log("y",this.y)
-            console.log("x",this.x)
-            this.x += 10;
+            this.x += 20;
         }, 25);
     }
 }

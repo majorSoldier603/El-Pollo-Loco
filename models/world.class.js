@@ -40,10 +40,11 @@ class World {
     checkCollisions() {
         setInterval(() => {
             this.level.enemies.forEach((mo) => {
-                if (this.character.isColliding(mo)) {
+                if (this.character.isColliding(mo) && !this.character.isInvulnerable) {
                     this.character.hit();
                     console.log('Collision with Character, enemy', this.character.energy)
                     this.statusBar.setPercentage(this.character.energy)
+                    this.character.isInvulnerable = true
                 }
             });
         }, 10);

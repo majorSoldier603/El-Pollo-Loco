@@ -41,6 +41,7 @@ class Character extends MovableObject {
     ]
 
     world;
+    isInvulnerable = false
     walking_sound = new Audio('audio/running.mp3')
 
     constructor() {
