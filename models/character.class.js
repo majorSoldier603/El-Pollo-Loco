@@ -43,6 +43,7 @@ class Character extends MovableObject {
     world;
     isInvulnerable = false
     walking_sound = new Audio('audio/running.mp3')
+    hit_sound = new Audio('audio/minecraft damage sound effect.mp3')
 
     constructor() {
         super().loadImage('img/2_character_pepe/2_walk/W-21.png');
