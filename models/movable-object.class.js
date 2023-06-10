@@ -3,7 +3,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 100;
+    energy = 1000;
     lastHit = 0;
 
     applyGravity() {
@@ -23,23 +23,23 @@ class MovableObject extends DrawableObject {
         }
     }
 
-/*
-    // character.isColliding(chicken); 
-    isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.height;
-    }
-*/
+    /*
+        // character.isColliding(chicken); 
+        isColliding(mo) {
+            return this.x + this.width > mo.x &&
+                this.y + this.height > mo.y &&
+                this.x < mo.x &&
+                this.y < mo.y + mo.height;
+        }
+    */
     // Bessere Formel zur Kollisionsberechnung (Genauer)
-isColliding (obj) {
+    isColliding(obj) {
 
-    return  (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) &&
-    (this.Y + this.offsetY + this.height) >= obj.Y &&
-    (this.Y + this.offsetY) <= (obj.Y + obj.height)
+        return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) //&&
+            //(this.x + this.offsety + this.height) >= obj.y &&
+            //(this.y + this.offsety) <= (obj.x + obj.height)
 
-}
+    }
 
     hit() {
         this.energy -= 5;
