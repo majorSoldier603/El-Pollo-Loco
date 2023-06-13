@@ -41,7 +41,16 @@ class Character extends MovableObject {
     ]
 
     world;
-    walking_sound = new Audio('audio/running.mp3');
+    chicken_sound = new Audio('audio/chicken.mp3');
+    damage_sound = new Audio('audio/damage.mp3');
+    glass_sound = new Audio('audio/glass.mp3');
+    jump_sound = new Audio('audio/jump.mp3');
+
+    loose_sound = new Audio('audio/loose.mp3');
+
+    running_sound = new Audio('audio/running.mp3');
+
+    win_sound = new Audio('audio/win.mp3');
 
 
 
@@ -59,16 +68,16 @@ class Character extends MovableObject {
     animate() {
 
         setInterval(() => {
-            this.walking_sound.pause();
+            this.running_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.walking_sound.play();
+                this.glass_sound.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
                 this.moveLeft();
-                this.walking_sound.play();
+                this.running_sound.play();
                 this.otherDirection = true;
             }
 
@@ -98,5 +107,6 @@ class Character extends MovableObject {
 
     jump() {
         this.speedY = 30;
+        this.jump_sound.play();
     }
 }

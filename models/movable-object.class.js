@@ -23,22 +23,10 @@ class MovableObject extends DrawableObject {
         }
     }
 
-    /*
-        // character.isColliding(chicken); 
-        isColliding(mo) {
-            return this.x + this.width > mo.x &&
-                this.y + this.height > mo.y &&
-                this.x < mo.x &&
-                this.y < mo.y + mo.height;
-        }
-    */
-    // Bessere Formel zur Kollisionsberechnung (Genauer)
     isColliding(obj) {
-
-        return (this.x + this.width) >= obj.x && this.x <= (obj.x + obj.width) //&&
-            //(this.x + this.offsety + this.height) >= obj.y &&
-            //(this.y + this.offsety) <= (obj.x + obj.height)
-
+        return (this.x + this.width) >= obj.x && 
+        this.x <= (obj.x + obj.width) &&
+        this.y + this.height > obj.y
     }
 
     hit() {
