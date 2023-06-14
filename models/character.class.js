@@ -41,7 +41,7 @@ class Character extends MovableObject {
     ]
 
     world;
-    chicken_sound = new Audio('audio/chicken.mp3');
+    
     damage_sound = new Audio('audio/damage.mp3');
     glass_sound = new Audio('audio/glass.mp3');
     jump_sound = new Audio('audio/jump.mp3');
@@ -72,7 +72,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.moveRight();
                 this.otherDirection = false;
-                this.glass_sound.play();
+                this.running_sound.play();
             }
 
             if (this.world.keyboard.LEFT && this.x > 0) {
@@ -95,6 +95,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
             } else if(this.isHurt()){
                 this.playAnimation(this.IMAGES_HURT);
+
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
