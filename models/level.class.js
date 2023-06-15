@@ -10,6 +10,6 @@ class Level {
         this.clouds = clouds;
         this.backgroundObjects = backgroundObjects;
         this.music_sound.autoplay = true;
-        this.music_sound.pause()
+        this.music_sound.pause();
     }
 }

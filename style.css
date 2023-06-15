@@ -4,6 +4,10 @@ body {
     align-items: center;
 }
 
+h1 {
+    display: block;
+}
+
 canvas {
     background-color: black;
     width: 70%;
