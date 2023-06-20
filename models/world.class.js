@@ -6,6 +6,7 @@ class World {
     keyboard;
     camera_x = 0;
     statusBar = new StatusBar();
+    overlay = new Overlay();
     throwableObjects = [];
 
     constructor(canvas, keyboard) {
@@ -58,9 +59,9 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
         // ------ Space for fixed objects ------
         this.addToMap(this.statusBar);
+        //this.addToMap(this.overlay);
         this.ctx.translate(this.camera_x, 0);
-
-
+        
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);

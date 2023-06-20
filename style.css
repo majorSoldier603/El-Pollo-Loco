@@ -1,14 +1,31 @@
 body {
+    margin: 0;
+
+    background-image: url(./img/background_dessert.jpg);
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+/*Gen stuff*/
+
+center {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-h1 {
-    display: block;
+title {
+    display: flex;                 
+    font-size: 5vw;
 }
 
 canvas {
-    background-color: black;
+    width: 100%;
+}
+
+#canvasSec {
     width: 70%;
 }

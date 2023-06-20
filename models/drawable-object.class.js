@@ -16,13 +16,6 @@ class DrawableObject {
         this.img = new Image(); // this.img = document.getElementById('image') <img id="iamge" src>
         this.img.src = path;
     }
-
-
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
-
-
     
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken) {
@@ -34,8 +27,6 @@ class DrawableObject {
         }
     }
 
-
-    
     /**
      * 
      * @param {Array} arr - ['img/image1.png', 'img/image2.png', ...] 
@@ -49,4 +40,12 @@ class DrawableObject {
         });
     }
 
+    draw(ctx) {
+        try {
+            ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        } catch (e) {
+            console.warn(e)
+        }
+        
+    }
 }
