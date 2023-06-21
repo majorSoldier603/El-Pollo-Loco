@@ -25,17 +25,53 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="init()" class="center">
+<body onload="" class="center">
 
     <title>EL POLLO LOCO</title>
 
-    <section title="canvas" id="canvasSec">
+    <section title="canvas" class="center" id="canvasSec">
 
-        
+        <section title="topsec" id="overlayimgsjunglediff" style="top: 25px;">
 
-        <canvas id="canvas" width="720" height="480">
-            <img src="img/11_overlay/fullscreen.png" alt="" srcset="">
-        </canvas>
+            <button type="button" style="right: 50px;" id="overlaybnts">
+                <img src="img/11_overlay/play.png" onclick="" alt="" srcset="">
+            </button>
+            <button type="button" id="overlaybnts">
+                <img src="img/11_overlay/mute.png" alt="" srcset="">
+            </button>
+            <button type="button" id="overlaybnts">
+                <img src="img/11_overlay/fullscreen.png" alt="" srcset="">
+            </button>
+
+        </section>
+
+
+        <canvas id="canvas" width="720" height="480"></canvas>
+
+        <section title="downsec" id="overlayimgsjunglediff"
+            style="bottom: 25px;  right: 0; width: 100%;">
+            <div style="display: flex; justify-content: space-between;">
+
+                <div title="leftright" >
+                    <button type="button" id="overlaybnts">
+                        <img src="img/11_overlay/arrowLeft.png" alt="" srcset="">
+                    </button>
+                    <button type="button" id="overlaybnts">
+                        <img src="img/11_overlay/arrowRight.png" alt="" srcset="">
+                    </button>
+                </div>
+
+                <div title="upshare" >
+                    <button type="button" id="overlaybnts">
+                        <img src="img/11_overlay/arrowJump.png" alt="" srcset="">
+                    </button>
+                    <button type="button" id="overlaybnts">
+                        <img src="img/11_overlay/arrowGo.png" alt="" srcset="">
+                    </button>
+                </div>
+
+            </div>
+        </section>
     </section>
 
 
