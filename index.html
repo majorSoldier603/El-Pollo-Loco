@@ -10,7 +10,6 @@
     <title>Document</title>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
-    <script src="models/overlay.class.js"></script>
     <script src="models/character.class.js"></script>
     <script src="models/chicken.class.js"></script>
     <script src="models/cloud.class.js"></script>
@@ -22,6 +21,7 @@
     <script src="models/throwable-object.class.js"> </script>
     <script src="models/endboss.class.js"></script>
     <script src="levels/level1.js"></script>
+    <script src="js/overlay.js"></script>
     <script src="js/game.js"></script>
 </head>
 
@@ -33,13 +33,13 @@
 
         <section title="topsec" id="overlayimgsjunglediff" style="top: 25px;">
 
-            <button type="button" style="right: 50px;" id="overlaybnts">
-                <img src="img/11_overlay/play.png" onclick="" alt="" srcset="">
+            <button type="button" style="right: 50px;" class="overlaybnts" id="overlaybnts">
+                <img src="img/11_overlay/play.png" onclick="init()" alt="" srcset="">
             </button>
-            <button type="button" id="overlaybnts">
+            <button type="button" class="overlaybnts" id="soundMasterBnt" onclick="unMute()">
                 <img src="img/11_overlay/mute.png" alt="" srcset="">
             </button>
-            <button type="button" id="overlaybnts">
+            <button type="button" class="overlaybnts" id="overlaybnts" onclick="fullscreen()">
                 <img src="img/11_overlay/fullscreen.png" alt="" srcset="">
             </button>
 
@@ -50,22 +50,23 @@
 
         <section title="downsec" id="overlayimgsjunglediff"
             style="bottom: 25px;  right: 0; width: 100%; display: flex; justify-content: center;">
+
             <div style="width: 95%; display: flex; justify-content: space-between;">
 
-                <div title="leftright" >
-                    <button type="button" id="overlaybnts">
+                <div title="leftright" class="bntSpaceBetween">
+                    <button type="button" class="overlaybnts" id="overlaybnts">
                         <img src="img/11_overlay/arrowLeft.png" alt="" srcset="">
                     </button>
-                    <button type="button" id="overlaybnts">
+                    <button type="button" class="overlaybnts" id="overlaybnts">
                         <img src="img/11_overlay/arrowRight.png" alt="" srcset="">
                     </button>
                 </div>
 
-                <div title="upshare" >
-                    <button type="button" id="overlaybnts">
+                <div title="upshare" class="bntSpaceBetween">
+                    <button type="button" class="overlaybnts" id="overlaybnts">
                         <img src="img/11_overlay/arrowJump.png" alt="" srcset="">
                     </button>
-                    <button type="button" id="overlaybnts">
+                    <button type="button" class="overlaybnts" id="overlaybnts">
                         <img src="img/11_overlay/arrowGo.png" alt="" srcset="">
                     </button>
                 </div>

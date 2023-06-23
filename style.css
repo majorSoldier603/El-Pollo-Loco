@@ -28,6 +28,8 @@ title {
     width: 70%;
     max-height: 80%;
     max-width: 80%;
+    display: flex;
+    align-items: center;
 }
 
 #overlayimgsjunglediff {
@@ -38,7 +40,7 @@ title {
     justify-content: space-between;
 }
 
-#overlaybnts {
+.overlaybnts {
     background-color: rgba(255, 255, 255, 0.3);
     border-color: rgba(255, 255, 255, 0.3);
     border-radius: 5px;
@@ -56,3 +58,9 @@ canvas {
     background-size: cover;
 }
 
+
+.bntSpaceBetween {
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+}

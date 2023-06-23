@@ -1,4 +1,4 @@
-class StatusBar extends Overlay {
+class StatusBar extends DrawableObject {
 
 
     HEALTH = [
