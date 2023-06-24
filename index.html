@@ -33,13 +33,13 @@
 
         <section title="topsec" id="overlayimgsjunglediff" style="top: 25px;">
 
-            <button type="button" style="right: 50px;" class="overlaybnts" id="overlaybnts">
+            <button type="button" style="right: 50px;" class="overlaybnts overlaybntsims" id="overlaybnts">
                 <img src="img/11_overlay/play.png" onclick="init()" alt="" srcset="">
             </button>
-            <button type="button" class="overlaybnts" id="soundMasterBnt" onclick="unMute()">
+            <button type="button" class="overlaybnts overlaybntsims" id="soundMasterBnt" onclick="unMute()">
                 <img src="img/11_overlay/mute.png" alt="" srcset="">
             </button>
-            <button type="button" class="overlaybnts" id="overlaybnts" onclick="fullscreen()">
+            <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onclick="fullscreen()">
                 <img src="img/11_overlay/fullscreen.png" alt="" srcset="">
             </button>
 
@@ -54,19 +54,19 @@
             <div style="width: 95%; display: flex; justify-content: space-between;">
 
                 <div title="leftright" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts" id="overlaybnts" on>
+                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onkeydown="goleft()" onkeyup="stopleft()" onmousedown="goleft()" onmouseup="stopleft()">
                         <img src="img/11_overlay/arrowLeft.png" alt="" srcset="">
                     </button>
-                    <button type="button" class="overlaybnts" id="overlaybnts">
+                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onkeydown="goRight()" onkeyup="stopRight()" onmousedown="goRight()" onmouseup="stopRight()">
                         <img src="img/11_overlay/arrowRight.png" alt="" srcset="">
                     </button>
                 </div>
 
                 <div title="upshare" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts" id="overlaybnts">
+                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onkeydown="goJump()"  onmousedown="goJump()" >
                         <img src="img/11_overlay/arrowJump.png" alt="" srcset="">
                     </button>
-                    <button type="button" class="overlaybnts" id="overlaybnts">
+                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts">
                         <img src="img/11_overlay/arrowGo.png" alt="" srcset="">
                     </button>
                 </div>

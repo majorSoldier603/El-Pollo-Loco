@@ -27,10 +27,25 @@ function goRight() {
     world.character.world.keyboard.RIGHT = true;
 }
 
+function stopRight() {
+    world.character.world.keyboard.RIGHT = false;
+}
+
 function goleft() {
     world.character.world.keyboard.LEFT = true;
 }
 
+function stopleft() {
+    world.character.world.keyboard.LEFT = false;
+}
+
 function goJump() {
+    world.character.world.keyboard.SPACE = true;
+    setTimeout(() => {
+        world.character.world.keyboard.SPACE = false;
+    }, 60);
+}
+
+function stopJump() {
     world.character.world.keyboard.SPACE = true;
 }

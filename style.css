@@ -48,6 +48,13 @@ title {
 
 }
 
+.overlaybntsims {
+    max-width: 100%;
+    height: auto;
+    width: auto\9; /* ie8 */
+
+}
+
 canvas {
     width: 100%;
     max-height: 100%;
