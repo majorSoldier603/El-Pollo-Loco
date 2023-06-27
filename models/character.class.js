@@ -54,7 +54,7 @@ class Character extends MovableObject {
     ]
 
     world;
-    
+
     damage_sound = new Audio('audio/damage.mp3');
     glass_sound = new Audio('audio/glass.mp3');
     jump_sound = new Audio('audio/jump.mp3');
@@ -79,7 +79,7 @@ class Character extends MovableObject {
 
 
     animate() {
-
+        let animateInterval =
         setInterval(() => {
             this.running_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -106,15 +106,14 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-            } else if(this.isHurt()){
-                this.playAnimation(this.IMAGES_HURT);
 
+                clearInterval(animateInterval)
+            } else if (this.isHurt()) {
+                this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMPING);
-            } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    this.playAnimation(this.IMAGES_WALKING);
-                }
+            } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+                this.playAnimation(this.IMAGES_WALKING);
             }
         }, 50);
     }
