@@ -25,22 +25,22 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="" class="center">
+<body onload="" class="center" oncontextmenu="return true;">
 
-    <title>EL POLLO LOCO</title>
+    <title class="d-nmw900 title">EL POLLO LOCO</title>
 
-    <section title="canvas" class="center" id="canvasSec">
+    <section title="canvas" class="center canvasSec">
 
         <section title="topsec" id="overlayimgsjunglediff" style="top: 25px;">
 
-            <button type="button" style="right: 50px;" class="overlaybnts overlaybntsims" id="overlaybnts">
-                <img src="img/11_overlay/play.png" onclick="init()" alt="" srcset="">
+            <button type="button" style="right: 50px;" class="overlaybnts">
+                <img src="img/11_overlay/play.png" onclick="init()" class="overlaybntsims" alt="" srcset="">
             </button>
-            <button type="button" class="overlaybnts overlaybntsims" id="soundMasterBnt" onclick="unMute()">
-                <img src="img/11_overlay/mute.png" alt="" srcset="">
+            <button type="button" class="overlaybnts" id="soundMasterBnt" onclick="unMute()">
+                <img src="img/11_overlay/mute.png" class="overlaybntsims" alt="" srcset="">
             </button>
-            <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onclick="fullscreen()">
-                <img src="img/11_overlay/fullscreen.png" alt="" srcset="">
+            <button type="button" class="overlaybnts" id="overlaybnts" onclick="fullscreen()">
+                <img src="img/11_overlay/fullscreen.png" class="overlaybntsims" alt="" srcset="">
             </button>
 
         </section>
@@ -54,27 +54,36 @@
             <div style="width: 95%; display: flex; justify-content: space-between;">
 
                 <div title="leftright" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onkeydown="goleft()" onkeyup="stopleft()" onmousedown="goleft()" onmouseup="stopleft()">
-                        <img src="img/11_overlay/arrowLeft.png" alt="" srcset="">
+                    <button type="button" class="overlaybnts" onpointerdown="goleft()" onpointerup="stopleft()">
+                        <img src="img/11_overlay/arrowLeft.png" class="overlaybntsims" alt="" srcset="">
                     </button>
-                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onkeydown="goRight()" onkeyup="stopRight()" onmousedown="goRight()" onmouseup="stopRight()">
-                        <img src="img/11_overlay/arrowRight.png" alt="" srcset="">
+                    <button type="button" class="overlaybnts" onpointerdown="goRight()" onpointerup="stopRight()"
+                        on="stopRight()">
+                        <img src="img/11_overlay/arrowRight.png" class="overlaybntsims" alt="" srcset="">
                     </button>
                 </div>
 
                 <div title="upshare" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts" onkeydown="goJump()"  onmousedown="goJump()" >
-                        <img src="img/11_overlay/arrowJump.png" alt="" srcset="">
+                    <button type="button" class="overlaybnts" onpointerdown="goJump()">
+                        <img src="img/11_overlay/arrowJump.png" class="overlaybntsims" alt="" srcset="">
                     </button>
-                    <button type="button" class="overlaybnts overlaybntsims" id="overlaybnts">
-                        <img src="img/11_overlay/arrowGo.png" alt="" srcset="">
+                    <button type="button" class="overlaybnts">
+                        <img src="img/11_overlay/arrowGo.png" class="overlaybntsims" alt="" srcset="">
                     </button>
                 </div>
 
             </div>
         </section>
-    </section>
 
+
+    </section>
+    <section class="undersec" title="undersec">
+      <div style="height: 5vh; font-size: 2vw; max-width: 100%; display: flex; justify-content: space-around; align-items: center;">
+        <span class="undersectext">D = Throw </span>
+        <span class="undersectext">Space = Jump</span>
+        <span class="undersectext">Arrow keys = Move</span>
+      </div>
+    </section>
 
 </body>
 

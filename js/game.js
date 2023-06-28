@@ -5,8 +5,10 @@ let keyboard = new Keyboard();
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
-
+    enemie = world.level.enemies
+    for (let index = 0; index < enemie.length; index++) {
+        world.level.enemies[index].isStarted = true
+    }
 
     console.log('My Character is', world.character);
 

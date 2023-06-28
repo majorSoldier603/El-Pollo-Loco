@@ -25,18 +25,22 @@ function fullscreen() {
 
 function goRight() {
     world.character.world.keyboard.RIGHT = true;
+    console.log(world.character.world.keyboard.RIGHT)
 }
 
 function stopRight() {
     world.character.world.keyboard.RIGHT = false;
+    console.log(world.character.world.keyboard.RIGHT)
 }
 
 function goleft() {
     world.character.world.keyboard.LEFT = true;
+    console.log(world.character.world.keyboard.LEFT)
 }
 
 function stopleft() {
     world.character.world.keyboard.LEFT = false;
+    console.log(world.character.world.keyboard.LEFT)
 }
 
 function goJump() {

@@ -79,7 +79,7 @@ class Character extends MovableObject {
 
 
     animate() {
-        let animateInterval =
+        let charAnimateInt =
         setInterval(() => {
             this.running_sound.pause();
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -107,7 +107,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
 
-                clearInterval(animateInterval)
+                clearInterval(charAnimateInt)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
