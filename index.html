@@ -54,18 +54,18 @@
             <div style="width: 95%; display: flex; justify-content: space-between;">
 
                 <div title="leftright" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts" onpointerdown="goleft()" onpointerup="stopleft()">
+                    <button type="button" class="overlaybnts" ontouch="left(true)" ontouchend="left(false)">
                         <img src="img/11_overlay/arrowLeft.png" class="overlaybntsims" alt="" srcset="">
                     </button>
-                    <button type="button" class="overlaybnts" onpointerdown="goRight()" onpointerup="stopRight()"
-                        on="stopRight()">
-                        <img src="img/11_overlay/arrowRight.png" class="overlaybntsims" alt="" srcset="">
+                    <button type="button" class="overlaybnts">
+                        <img src="img/11_overlay/arrowRight.png" ontouchstart="right(true)" ontouchend="right(false)" alt="" srcset="">
                     </button>
                 </div>
 
                 <div title="upshare" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts" onpointerdown="goJump()">
-                        <img src="img/11_overlay/arrowJump.png" class="overlaybntsims" alt="" srcset="">
+                    <button type="button" class="overlaybnts" >
+                        <img src="img/11_overlay/arrowJump.png" onmousedown="up(true)" onmouseup="up(false)" onmouseout="up(false)"
+                        ontouchstart="left(true)" ontouchend="left(false)" alt="" srcset="">
                     </button>
                     <button type="button" class="overlaybnts">
                         <img src="img/11_overlay/arrowGo.png" class="overlaybntsims" alt="" srcset="">
@@ -78,11 +78,12 @@
 
     </section>
     <section class="undersec" title="undersec">
-      <div style="height: 5vh; font-size: 2vw; max-width: 100%; display: flex; justify-content: space-around; align-items: center;">
-        <span class="undersectext">D = Throw </span>
-        <span class="undersectext">Space = Jump</span>
-        <span class="undersectext">Arrow keys = Move</span>
-      </div>
+        <div
+            style="height: 5vh; font-size: 2vw; max-width: 100%; display: flex; justify-content: space-around; align-items: center;">
+            <span class="undersectext">D = Throw </span>
+            <span class="undersectext">Space = Jump</span>
+            <span class="undersectext">Arrow keys = Move</span>
+        </div>
     </section>
 
 </body>
