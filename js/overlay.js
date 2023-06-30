@@ -17,49 +17,26 @@ function fullscreen() {
 
     if (canvasSec.fullscreenElement === true) {
         document.exitFullscreen();
-      } else {
+        canvasSec.fullscreenElement = false;
+    } else {
         canvasSec.fullscreenElement = true;
         canvasSec.requestFullscreen();
-      }
+    }
 }
 
 function left(value) {
-    event.preventDefault();
     keyboard.LEFT = value;
 }
 
 function right(value) {
-    event.preventDefault();
     keyboard.RIGHT = value;
 }
 
 function up(value) {
-    event.preventDefault();
     keyboard.SPACE = value;
 }
-
-function goJump() {
-    world.character.world.keyboard.SPACE = true;
-    setTimeout(() => {
-        world.character.world.keyboard.SPACE = false;
-    }, 60);
-}
-
-function stopJump() {
-    world.character.world.keyboard.SPACE = true;
-}
-
-
+// uncomment while testing
 // Disable the default context menu on the document
 document.addEventListener('contextmenu', function (event) {
     event.preventDefault();
-  });
-  
-  // Handle the right-click event on the document
-  document.addEventListener('mousedown', function (event) {
-    if (event.button === 3) {
-      // Right-click is triggered
-      // Your custom logic here
-      console.log('Right-clicked!');
-    }
-  });
+});
