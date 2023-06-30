@@ -23,7 +23,7 @@
     <script src="levels/level1.js"></script>
     <script src="js/overlay.js"></script>
     <script src="js/game.js"></script>
-</head>
+</head>11
 
 <body onload="" class="center">
 
@@ -33,8 +33,8 @@
 
         <section title="topsec" id="overlayimgsjunglediff" style="top: 25px;">
 
-            <button type="button" style="right: 50px;" class="overlaybnts">
-                <img src="img/11_overlay/play.png" onclick="init()" class="overlaybntsims" alt="" srcset="">
+            <button type="button" class="overlaybnts" onclick="init()">
+                <img src="img/11_overlay/play.png" class="overlaybntsims" alt="" srcset="">
             </button>
             <button type="button" class="overlaybnts" id="soundMasterBnt" onclick="unMute()">
                 <img src="img/11_overlay/mute.png" class="overlaybntsims" alt="" srcset="">
@@ -54,22 +54,25 @@
             <div style="width: 95%; display: flex; justify-content: space-between;">
 
                 <div title="leftright" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts" style="padding: 4%;" onmousedown="left(true)" onmouseup="left(false)"
-                        onmouseout="left(false)" ontouchstart="left(true)" ontouchend="left(false)">
+                    <button type="button" class="overlaybnts" style="padding: 4%;" onmousedown="left(true)"
+                        onmouseup="left(false)" onmouseout="left(false)" ontouchstart="left(true)"
+                        ontouchend="left(false)">
                         <img src="img/11_overlay/arrowLeft.png" class="overlaybntsims" alt="" srcset="">
                     </button>
-                    <button type="button" class="overlaybnts" style="padding: 4%;" onmousedown="right(true)" onmouseup="right(false)"
-                        onmouseout="right(false)" ontouchstart="right(true)" ontouchend="right(false)">
+                    <button type="button" class="overlaybnts" style="padding: 4%;" onmousedown="right(true)"
+                        onmouseup="right(false)" onmouseout="right(false)" ontouchstart="right(true)"
+                        ontouchend="right(false)">
                         <img src="img/11_overlay/arrowRight.png" class="overlaybntsims" alt="" srcset="">
                     </button>
                 </div>
 
                 <div title="upshare" class="bntSpaceBetween">
-                    <button type="button" class="overlaybnts" style="padding: 4%;" onmousedown="up(true)" onmouseup="up(false)"
-                        onmouseout="up(false)" ontouchstart="up(true)" ontouchend="up(false)">
+                    <button type="button" class="overlaybnts" style="padding: 4%;" onmousedown="up(true)"
+                        onmouseup="up(false)" onmouseout="up(false)" ontouchstart="up(true)" ontouchend="up(false)">
                         <img src="img/11_overlay/arrowJump.png" class="overlaybntsims" alt="" srcset="">
                     </button>
-                    <button type="button" class="overlaybnts" style="padding: 4%;">
+                    <button type="button" class="overlaybnts" style="padding: 4%;" onmousedown="throws(true)"
+                        onmouseup="throws(false)" onmouseout="throws(false)" ontouchstart="throws(true)" ontouchend="throws(false)">
                         <img src="img/11_overlay/arrowGo.png" class="overlaybntsims" alt="" srcset="">
                     </button>
                 </div>

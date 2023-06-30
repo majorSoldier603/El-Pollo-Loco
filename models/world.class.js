@@ -7,6 +7,8 @@ class World {
     camera_x = 0;
     statusBar = new StatusBar();
     throwableObjects = [];
+    bottleCount = 0;
+    isStarted = false
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -29,13 +31,23 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.bottleCount > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.bottleCount -= 1;
         }
     }
 
     checkCollisions() {
+        //console.log('enemy: ', this.isDead);
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy) && this.level.enemies.isDead == true) {
+
+                this.character.hit();
+                this.statusBar.setPercentage(this.character.energy);
+            }
+        });
+        
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && enemy.Dead === false) {
                 this.character.hit();

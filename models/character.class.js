@@ -104,7 +104,7 @@ class Character extends MovableObject {
 
         setInterval(() => {
 
-            if (this.isDead()) {
+            if (this.isDead(this)) {
                 this.playAnimation(this.IMAGES_DEAD);
 
                 clearInterval(charAnimateInt)

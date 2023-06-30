@@ -1,10 +1,10 @@
 class Chicken extends MovableObject {
 
-    isStarted = false
     energy = 100;
     height = 55;
     width = 70
     y = 360
+    world;
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_normal/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_normal/1_walk/2_w.png',
@@ -13,7 +13,6 @@ class Chicken extends MovableObject {
 
     IMAGES_DEAD = [
         'img/3_enemies_chicken/chicken_normal/2_dead/dead.png',
-        ''
     ]
 
     constructor() {
@@ -32,8 +31,12 @@ class Chicken extends MovableObject {
 
     animate() {
         setInterval(() => {
-            if (this.isStarted === true) {
-                this.moveLeft();
+            try {
+                if (world.level.isStarted === true) {
+                    this.moveLeft();
+                }
+            } catch (e) {
+                // https://tenor.com/view/what-kid-awkward-confused-gif-10267418 What?
             }
         }, 1000 / 60);
 
@@ -41,16 +44,12 @@ class Chicken extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
         }, 500);
         setInterval(() => {
-
-            if (this.isDead()) {
+            if (this.isDead(this) == true) {
+                this.removeDeads(this);
                 this.playAnimation(this.IMAGES_DEAD);
                 this.moveStop();
-                this.Dead = true;
-                this.IMAGES_DEAD = '';
             }
         }, 10);
 
     }
-
-
 }

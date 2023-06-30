@@ -19,8 +19,8 @@ function fullscreen() {
         document.exitFullscreen();
         canvasSec.fullscreenElement = false;
     } else {
-        canvasSec.fullscreenElement = true;
         canvasSec.requestFullscreen();
+        canvasSec.fullscreenElement = true;
     }
 }
 
@@ -35,8 +35,13 @@ function right(value) {
 function up(value) {
     keyboard.SPACE = value;
 }
-// uncomment while testing
+
+function throws(value) {
+    keyboard.D = value;
+}
+/* commented for testing because it blocks right click so inspect element does not work
 // Disable the default context menu on the document
 document.addEventListener('contextmenu', function (event) {
     event.preventDefault();
 });
+*/

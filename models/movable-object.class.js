@@ -1,5 +1,5 @@
 class MovableObject extends DrawableObject {
-    Dead = false
+
     speed = 0.15;
     otherDirection = false;
     speedY = 0;
@@ -25,9 +25,9 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(obj) {
-        return (this.x + this.width) >= obj.x && 
-        this.x <= (obj.x + obj.width) &&
-        this.y + this.height > obj.y
+        return (this.x + this.width) >= obj.x &&
+            this.x <= (obj.x + obj.width) &&
+            this.y + this.height > obj.y
     }
 
     hit() {
@@ -49,6 +49,23 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
+    removeDeads() {
+        let arr = world.level.enemies
+        for (let i =  0; i < arr.length; i++) {
+            console.log('arr[i]: ', arr[i]);
+            //console.log('arr[i].isDead == true: ', arr[i].isDead() == true);
+            if (arr[i].isDead() == true) {
+                try {
+                    delete arr[i]
+                } catch (error) {
+                    console.warn('error: ', error);
+                    // https://tenor.com/view/what-kid-awkward-confused-gif-10267418 What?
+                }
+
+            }
+        }
+    }
+
     playAnimation(images) {
         let i = this.currentImage % images.length; // let i = 7 % 6; =>  1, Rest 1 
         let path = images[i];
@@ -65,7 +82,7 @@ class MovableObject extends DrawableObject {
     }
 
     moveStop() {
-        this.speed = 0 
+        this.speed = 0
         this.x += this.speed;
     }
 
@@ -74,3 +91,4 @@ class MovableObject extends DrawableObject {
     }
 
 }
+
