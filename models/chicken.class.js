@@ -44,10 +44,10 @@ class Chicken extends MovableObject {
             this.playAnimation(this.IMAGES_WALKING);
         }, 500);
         setInterval(() => {
-            if (this.isDead(this) == true) {
-                this.removeDeads(this);
+            if (this.isDead() == true) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.moveStop();
+                this.removeDeads()
             }
         }, 10);
 

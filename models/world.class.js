@@ -39,17 +39,8 @@ class World {
     }
 
     checkCollisions() {
-        //console.log('enemy: ', this.isDead);
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.level.enemies.isDead == true) {
-
-                this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
-            }
-        });
-        
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && enemy.Dead === false) {
+            if (this.character.isColliding(enemy)) {
                 this.character.hit();
                 this.statusBar.setPercentage(this.character.energy);
             }

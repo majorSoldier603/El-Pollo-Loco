@@ -51,17 +51,9 @@ class MovableObject extends DrawableObject {
 
     removeDeads() {
         let arr = world.level.enemies
-        for (let i =  0; i < arr.length; i++) {
-            console.log('arr[i]: ', arr[i]);
-            //console.log('arr[i].isDead == true: ', arr[i].isDead() == true);
-            if (arr[i].isDead() == true) {
-                try {
-                    delete arr[i]
-                } catch (error) {
-                    console.warn('error: ', error);
-                    // https://tenor.com/view/what-kid-awkward-confused-gif-10267418 What?
-                }
-
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == undefined || arr[i].isDead() == true) {
+                delete arr[i]
             }
         }
     }
