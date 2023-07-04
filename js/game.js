@@ -8,7 +8,6 @@ function init() {
     if (world.level.isStarted === true) {
         location.reload()
     }
-    world.level.enemies[2].energy = 0;
     world.level.isStarted = true;
     console.log('My Character is', world.character);
 }

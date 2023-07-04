@@ -4,7 +4,7 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 1000;
+    energy = 10000000000000;
     lastHit = 0;
 
     applyGravity() {
@@ -49,8 +49,9 @@ class MovableObject extends DrawableObject {
         return this.energy == 0;
     }
 
-    removeDeads() {
-        let arr = world.level.enemies
+    removeDeads(obj) {
+        console.log('obj: ', obj);
+        let arr = world.level[obj]
         for (let i = 0; i < arr.length; i++) {
             if (arr[i] == undefined || arr[i].isDead() == true) {
                 delete arr[i]

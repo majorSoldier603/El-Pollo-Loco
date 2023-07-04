@@ -1,10 +1,20 @@
 const level1 = new Level(
     [
+        new Bottles(0, 300),
+        new Bottles(10, 300),
+        new Bottles(20, 300),
+        new Bottles(30, 300),
+        new Bottles(40, 300),
+    ],
+    [
         new ThrowableObject(),
         new Chicken(),
         new Chicken(),
         new Chicken(),
-        new Endboss
+        new Chickensmall(),
+        new Chickensmall(),
+        new Chickensmall(),
+        new Endboss()
     ],
     [
         new Cloud()

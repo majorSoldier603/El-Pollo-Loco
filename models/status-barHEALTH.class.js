@@ -1,4 +1,4 @@
-class StatusBar extends DrawableObject {
+class StatusBarHEALTH extends DrawableObject {
 
 
     HEALTH = [
