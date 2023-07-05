@@ -6,6 +6,12 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 10000000000000;
     lastHit = 0;
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0
+    }
 
     applyGravity() {
         setInterval(() => {
@@ -25,9 +31,24 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(obj) {
+        if (this instanceof Character) { // KEINER REAKTION, nur Zeile 69 ausgeführt
+            return this.offsetColliding(obj);
+        } else {
+            return this.nonOffsetColliding(obj);
+        }
+    }
+
+    noneOffsetColliding(obj) {
         return (this.x + this.width) >= obj.x &&
             this.x <= (obj.x + obj.width) &&
             this.y + this.height > obj.y
+    }
+
+    offsetColliding(obj) {
+        return this.x + this.width - this.offset.right > obj.x + obj.offset.left && // R -> L
+            this.y + this.height - this.offset.bottom > obj.y + obj.offset.top && // T -> B
+            this.x + this.offset.left < obj.x + obj.width - obj.offset.right && // L -> R
+            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom; // B -> T
     }
 
     hit() {
@@ -46,17 +67,15 @@ class MovableObject extends DrawableObject {
     }
 
     isDead() {
-        return this.energy == 0;
+        if (this.energy == 0 || this.energy < 0 || this.energy == -0) {
+            return true
+        } else {
+            return false
+        }
     }
 
     removeDeads(obj) {
-        console.log('obj: ', obj);
-        let arr = world.level[obj]
-        for (let i = 0; i < arr.length; i++) {
-            if (arr[i] == undefined || arr[i].isDead() == true) {
-                delete arr[i]
-            }
-        }
+        return console.log('HTTP 301 models/world.class.js:71');
     }
 
     playAnimation(images) {
@@ -81,6 +100,10 @@ class MovableObject extends DrawableObject {
 
     jump() {
         this.speedY = 30;
+    }
+
+    jumpOnHead() {
+        this.speedY = 25;
     }
 
 }

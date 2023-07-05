@@ -1,7 +1,7 @@
 class Character extends MovableObject {
 
     height = 250;
-    y = 50;
+    y = 150;
     speed = 5;
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -53,6 +53,13 @@ class Character extends MovableObject {
         'img/2_character_pepe/4_hurt/H-43.png',
     ]
 
+    offset = {
+        top: 120,
+        bottom: 30,
+        left: 40,
+        right: 30
+    }
+
     world;
 
     damage_sound = new Audio('audio/damage.mp3');
@@ -80,33 +87,32 @@ class Character extends MovableObject {
 
     animate() {
         let charAnimateInt =
-        setInterval(() => {
-            this.running_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                this.running_sound.play();
-            }
+            setInterval(() => {
+                this.running_sound.pause();
+                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                    this.moveRight();
+                    this.otherDirection = false;
+                    this.running_sound.play();
+                }
 
-            if (this.world.keyboard.LEFT && this.x > 0) {
-                this.moveLeft();
-                this.running_sound.play();
-                this.otherDirection = true;
-            }
+                if (this.world.keyboard.LEFT && this.x > 0) {
+                    this.moveLeft();
+                    this.running_sound.play();
+                    this.otherDirection = true;
+                }
 
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-            }
+                if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                    this.jump();
+                }
 
-            this.world.camera_x = -this.x + 100;
-        }, 1000 / 144);
+                this.world.camera_x = -this.x + 100;
+            }, 1000 / 144);
 
 
         setInterval(() => {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-
                 clearInterval(charAnimateInt)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);

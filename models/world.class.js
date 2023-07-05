@@ -27,8 +27,8 @@ class World {
     run() {
         setInterval(() => {
             this.checkCollisions();
-            this.checkThrowObjects();
-        }, 200);
+        }, 10);
+
     }
 
     checkThrowObjects() {
@@ -36,27 +36,50 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.statusBarBOTTLE.bottleCount -= 1;
             this.throwableObjects.push(bottle);
+            this.statusBarBOTTLE.setPath(this.statusBarBOTTLE.bottleCount);
         }
     }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.lastHit > 0) {
+                if (enemy.isDead() == false) {
+                    this.character.jumpOnHead();
+                }
+                enemy.energy -= 100
+                setTimeout(() => {
+                    this.removeDeads("enemies")
+                }, 1000);
+            } else if (this.character.isColliding(enemy) && enemy.isDead() == false) {
                 this.character.hit();
                 this.statusBarHEALTH.setPercentage(this.character.energy);
             }
         });
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
+                bottle.energy -= 1
                 this.statusBarBOTTLE.bottleCount += 1;
-                this.statusBarBOTTLE.setPath(this.bottleCount);
-                if (this.statusBarBOTTLE.isDead == true) {
-                    this.removeDeads(bottles)
-                }
-
+                this.removeDeads("bottles")
+                this.statusBarBOTTLE.setPath(this.statusBarBOTTLE.bottleCount);
             }
         });
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                coin.energy -= 1
+                this.statusBarCOIN.coinCount += 1;
+                this.removeDeads("coins")
+                this.statusBarCOIN.setPath(this.statusBarCOIN.coinCount);
+            }
+        });
+    }
 
+    removeDeads(obj) {
+        let arr = world.level[obj]
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] == undefined || arr[i].isDead() == true) {
+                delete arr[i]
+            }
+        }
     }
 
     draw() {
@@ -79,6 +102,7 @@ class World {
 
         this.addToMap(this.character);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.throwableObjects);
