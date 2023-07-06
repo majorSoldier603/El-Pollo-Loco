@@ -26,9 +26,13 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkCollisionsEnemy();
         }, 10);
-
+        setInterval(() => {
+            this.checkThrowObjects();
+            this.checkCollisionsBottle();
+            this.checkCollisionsCoin();
+        }, 200);
     }
 
     checkThrowObjects() {
@@ -40,9 +44,9 @@ class World {
         }
     }
 
-    checkCollisions() {
+    checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.lastHit > 0) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.isHurt() < 1) {
                 if (enemy.isDead() == false) {
                     this.character.jumpOnHead();
                 }
@@ -51,10 +55,16 @@ class World {
                     this.removeDeads("enemies")
                 }, 1000);
             } else if (this.character.isColliding(enemy) && enemy.isDead() == false) {
+                this.character.lastHit = 0;
                 this.character.hit();
                 this.statusBarHEALTH.setPercentage(this.character.energy);
             }
         });
+
+    }
+
+
+    checkCollisionsBottle() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 bottle.energy -= 1
@@ -63,6 +73,10 @@ class World {
                 this.statusBarBOTTLE.setPath(this.statusBarBOTTLE.bottleCount);
             }
         });
+    }
+
+
+    checkCollisionsCoin() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 coin.energy -= 1
@@ -72,6 +86,7 @@ class World {
             }
         });
     }
+
 
     removeDeads(obj) {
         let arr = world.level[obj]

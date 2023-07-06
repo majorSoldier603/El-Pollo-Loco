@@ -78,11 +78,11 @@ class MovableObject extends DrawableObject {
         return console.log('HTTP 301 models/world.class.js:71');
     }
 
-    playAnimation(images) {
+    playAnimation(images, slow) {
         let i = this.currentImage % images.length; // let i = 7 % 6; =>  1, Rest 1 
         let path = images[i];
         this.img = this.imageCache[path];
-        this.currentImage++;
+        this.currentImage++
     }
 
     moveRight() {

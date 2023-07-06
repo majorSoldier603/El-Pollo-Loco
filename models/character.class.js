@@ -13,15 +13,14 @@ class Character extends MovableObject {
     ]
 
     IMAGES_JUMPING = [
-        'img/2_character_pepe/3_jump/J-31.png',
-        'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-33.png',
         'img/2_character_pepe/3_jump/J-34.png',
         'img/2_character_pepe/3_jump/J-35.png',
         'img/2_character_pepe/3_jump/J-36.png',
         'img/2_character_pepe/3_jump/J-37.png',
         'img/2_character_pepe/3_jump/J-38.png',
-        'img/2_character_pepe/3_jump/J-39.png'
+        'img/2_character_pepe/3_jump/J-39.png',
+        'img/2_character_pepe/3_jump/J-31.png'
     ]
 
     IMAGES_DEAD = [
@@ -35,16 +34,29 @@ class Character extends MovableObject {
     ]
 
     IMAGES_STANDING = [
-        './img/img/2_character_pepe/1_idle/idle/I-1.png',
-        './img/img/2_character_pepe/1_idle/idle/I-2.png',
-        './img/img/2_character_pepe/1_idle/idle/I-3.png',
-        './img/img/2_character_pepe/1_idle/idle/I-4.png',
-        './img/img/2_character_pepe/1_idle/idle/I-5.png',
-        './img/img/2_character_pepe/1_idle/idle/I-6.png',
-        './img/img/2_character_pepe/1_idle/idle/I-7.png',
-        './img/img/2_character_pepe/1_idle/idle/I-8.png',
-        './img/img/2_character_pepe/1_idle/idle/I-9.png',
-        './img/img/2_character_pepe/1_idle/idle/I-10.png'
+        'img/2_character_pepe/1_idle/idle/I-1.png',
+        'img/2_character_pepe/1_idle/idle/I-2.png',
+        'img/2_character_pepe/1_idle/idle/I-3.png',
+        'img/2_character_pepe/1_idle/idle/I-4.png',
+        'img/2_character_pepe/1_idle/idle/I-5.png',
+        'img/2_character_pepe/1_idle/idle/I-6.png',
+        'img/2_character_pepe/1_idle/idle/I-7.png',
+        'img/2_character_pepe/1_idle/idle/I-8.png',
+        'img/2_character_pepe/1_idle/idle/I-9.png',
+        'img/2_character_pepe/1_idle/idle/I-10.png'
+    ]
+
+    IMAGES_SLEEP = [
+        'img/2_character_pepe/1_idle/long_idle/I-11.png',
+        'img/2_character_pepe/1_idle/long_idle/I-12.png',
+        'img/2_character_pepe/1_idle/long_idle/I-13.png',
+        'img/2_character_pepe/1_idle/long_idle/I-14.png',
+        'img/2_character_pepe/1_idle/long_idle/I-15.png',
+        'img/2_character_pepe/1_idle/long_idle/I-16.png',
+        'img/2_character_pepe/1_idle/long_idle/I-17.png',
+        'img/2_character_pepe/1_idle/long_idle/I-18.png',
+        'img/2_character_pepe/1_idle/long_idle/I-19.png',
+        'img/2_character_pepe/1_idle/long_idle/I-20.png'
     ]
 
     IMAGES_HURT = [
@@ -79,6 +91,8 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
+        this.loadImages(this.IMAGES_STANDING);
+        this.loadImages(this.IMAGES_SLEEP);
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
@@ -110,22 +124,51 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 clearInterval(charAnimateInt)
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
-                this.playAnimation(this.IMAGES_JUMPING);
+                this.setPath();
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALKING);
             }
         }, 50);
+        setInterval(() => {
+            if (this.world.keyboard.timeSinceLastInput < -0 && this.world.keyboard.timeSinceLastInput > -9 && this.isHurt == false) {
+                this.playAnimation(this.IMAGES_STANDING);
+            } else if (this.world.keyboard.timeSinceLastInput < -10 && this.isHurt == false) {
+                this.playAnimation(this.IMAGES_SLEEP);
+            }
+        }, 200);
     }
 
     jump() {
         this.speedY = 30;
         this.jump_sound.play();
+    }
+
+    setPath() {
+        let path = this.IMAGES_JUMPING[this.resolveImageIndex()];
+        this.img = this.imageCache[path];
+    }
+
+    resolveImageIndex() {
+        if (this.y > 175) {
+            return 7;
+        } else if (this.y > 147) {
+            return 6;
+        } else if (this.y > 119) {
+            return 5;
+        } else if (this.y > 91) {
+            return 4;
+        } else if (this.y > 63) {
+            return 3;
+        } else if (this.y > 35) {
+            return 2;
+        } else {
+            return 1;
+        }
     }
 }
