@@ -10,24 +10,20 @@ class Keyboard {
     startTime = 0;
     endTime = 0;
     timeSinceLastInput = this.endTime - this.startTime;
-    world;
 
     constructor() {
         this.isInactive()
         this.isActive()
 
-        setInterval(() => {
-            this.measureTime()
-        }, 120);
+        this.measureTime()
     }
 
     isInactive() {
         setInterval(() => {
             if (this.LEFT == false && this.RIGHT == false && this.UP == false && this.DOWN == false && this.SPACE == false && this.D == false && this.F == false) {
                 this.startTime = new Date().getTime();
-                this.isActive()
             }
-        }, 10);
+        }, 50);
     }
 
     isActive() {
@@ -35,16 +31,18 @@ class Keyboard {
             if (this.LEFT == true || this.RIGHT == true || this.UP == true || this.DOWN == true || this.SPACE == true || this.D == true || this.F == true) {
                 this.endTime = new Date().getTime();
             }
-        }, 10);
+        }, 50);
     }
 
     measureTime() {
-        this.timeSinceLastInput = this.endTime - this.startTime;
-        this.timeSinceLastInput = this.timeSinceLastInput / 1000
-
+        setInterval(() => {
+            this.timeSinceLastInput = this.endTime - this.startTime;
+            this.timeSinceLastInput = this.timeSinceLastInput / 1000
+            console.log('timeElapsed: ', this.timeSinceLastInput);
+        }, 500);
     }
 
-    
+
 
 }
 

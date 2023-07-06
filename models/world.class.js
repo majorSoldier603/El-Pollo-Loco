@@ -47,7 +47,7 @@ class World {
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.isHurt() < 1) {
-                if (enemy.isDead() == false) {
+                if (enemy.isDead() == false && enemy.x !== 2500) {
                     this.character.jumpOnHead();
                 }
                 enemy.energy -= 100
