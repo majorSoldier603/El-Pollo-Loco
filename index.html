@@ -30,7 +30,7 @@
     <script src="js/game.js"></script>
 </head>11
 
-<body onload="" class="center">
+<body onload="" class="center" oncontextmenu="return true;">
 
     <title class="d-nmw900 title">EL POLLO LOCO</title>
 
@@ -38,13 +38,13 @@
 
         <section title="topsec" id="overlayimgsjunglediff" style="top: 25px;">
 
-            <button type="button" class="overlaybnts" onclick="init()">
+            <button type="button" class="overlaybnts" onclick="init()" onkeydown="return false">
                 <img src="img/11_overlay/play.png" class="overlaybntsims" alt="" srcset="">
             </button>
-            <button type="button" class="overlaybnts" id="soundMasterBnt" onclick="unMute()">
+            <button type="button" class="overlaybnts" id="soundMasterBnt" onclick="unMute()" onkeydown="return false">
                 <img src="img/11_overlay/mute.png" class="overlaybntsims" alt="" srcset="">
             </button>
-            <button type="button" class="overlaybnts" id="overlaybnts" onclick="fullscreen()">
+            <button type="button" class="overlaybnts" id="overlaybnts" onclick="fullscreen()" onkeydown="return false">
                 <img src="img/11_overlay/fullscreen.png" class="overlaybntsims" alt="" srcset="">
             </button>
 

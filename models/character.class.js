@@ -3,6 +3,7 @@ class Character extends MovableObject {
     height = 250;
     y = 150;
     speed = 5;
+    isHurting = false
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -74,14 +75,11 @@ class Character extends MovableObject {
 
     world;
 
-    damage_sound = new Audio('audio/damage.mp3');
+
     glass_sound = new Audio('audio/glass.mp3');
     jump_sound = new Audio('audio/jump.mp3');
-
     loose_sound = new Audio('audio/loose.mp3');
-
     running_sound = new Audio('audio/running.mp3');
-
     win_sound = new Audio('audio/win.mp3');
 
 
@@ -136,9 +134,9 @@ class Character extends MovableObject {
             }
         }, 50);
         setInterval(() => {
-            if (this.world.keyboard.timeSinceLastInput < -0 && this.world.keyboard.timeSinceLastInput > -9 && this.isHurt == false) {
+            if (this.world.keyboard.timeSinceLastInput < -0 && this.world.keyboard.timeSinceLastInput > -9) {
                 this.playAnimation(this.IMAGES_STANDING);
-            } else if (this.world.keyboard.timeSinceLastInput < -10 && this.isHurt == false) {
+            } else if (this.world.keyboard.timeSinceLastInput < -10) {
                 this.playAnimation(this.IMAGES_SLEEP);
             }
         }, 200);

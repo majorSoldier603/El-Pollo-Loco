@@ -18,11 +18,11 @@ class DrawableObject {
     }
     
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss || this instanceof Chickensmall) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(this.x, this.y, this.width, this.height, this.offset.bottom, this.offset.top, this.offset.left, this.offset.right);
             ctx.stroke();
         }
     }
@@ -44,6 +44,8 @@ class DrawableObject {
         try {
             ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         } catch (e) {
+            debugger
+            console.log(this.imageCache)
             console.warn(e)
         }
         

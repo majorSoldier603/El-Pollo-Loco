@@ -10,6 +10,16 @@ class World {
     statusBarCOIN = new StatusBarCOIN();
     throwableObjects = [];
     isStarted = false
+    endboss = this.level.enemies.length - 1
+
+    damage_sounds = [
+        new Audio('audio/damage.mp3'),
+        new Audio('audio/damage1.mp3'),
+        new Audio('audio/damage2.mp3'),
+        new Audio('audio/damage3.mp3')
+    ]
+
+    damage_sound;
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -24,6 +34,12 @@ class World {
         this.character.world = this;
     }
 
+    damageSound(sounds) {
+        sounds.forEach(sound => {
+            this.damage_sound = this.damage_sounds[sound];
+        });
+    }
+
     run() {
         setInterval(() => {
             this.checkCollisionsEnemy();
@@ -32,7 +48,26 @@ class World {
             this.checkThrowObjects();
             this.checkCollisionsBottle();
             this.checkCollisionsCoin();
+            this.checkCollisionsThrowObjects();
         }, 200);
+        setInterval(() => {
+
+        }, 5000);
+    }
+
+
+    checkCollisionsThrowObjects() {
+        this.throwableObjects.forEach((bottle) => {
+            if (this.level.enemies[this.endboss].isColliding(bottle)) {
+                console.log('bottle: ', bottle);
+                console.log('this.throwableObjects: ', this.throwableObjects);
+                console.log('this.level.enemies[7].energy: ', this.level.enemies[this.endboss].energy);
+                bottle.energy -= 1
+
+                console.log('bottle.animateRotation: ', bottle.animateRotation);
+                bottle.AnimateKaboom()
+            }
+        });
     }
 
     checkThrowObjects() {
@@ -47,22 +82,25 @@ class World {
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.isHurt() < 1) {
-                if (enemy.isDead() == false && enemy.x !== 2500) {
+                if (enemy.isDead() == false && enemy.isEndboss == false) {
                     this.character.jumpOnHead();
                 }
+
                 enemy.energy -= 100
                 setTimeout(() => {
                     this.removeDeads("enemies")
                 }, 1000);
             } else if (this.character.isColliding(enemy) && enemy.isDead() == false) {
+                this.damageSound(this.damage_sounds);
+                this.damage_sound.play();
                 this.character.lastHit = 0;
                 this.character.hit();
+                this.keyboard.timeSinceLastInput = 0
                 this.statusBarHEALTH.setPercentage(this.character.energy);
             }
         });
 
     }
-
 
     checkCollisionsBottle() {
         this.level.bottles.forEach((bottle) => {
@@ -86,7 +124,6 @@ class World {
             }
         });
     }
-
 
     removeDeads(obj) {
         let arr = world.level[obj]

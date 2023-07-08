@@ -9,8 +9,18 @@ function init() {
         location.reload()
     }
     world.level.isStarted = true;
+    world.keyboard.isInactive()
+    world.keyboard.isActive()
+    world.keyboard.measureTime()
     console.log('My Character is', world.character);
 }
+
+function clicked(event) {
+    event.preventDefault();
+    return false
+    alert('Right clicked me');//For now just showing an alert
+}
+
 
 window.addEventListener("keydown", (e) => {
     if (e.keyCode == 39) {

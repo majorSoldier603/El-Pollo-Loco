@@ -31,10 +31,10 @@ class MovableObject extends DrawableObject {
     }
 
     isColliding(obj) {
-        if (this instanceof Character) { // KEINER REAKTION, nur Zeile 69 ausgeführt
+        if (this instanceof Character) {
             return this.offsetColliding(obj);
         } else {
-            return this.nonOffsetColliding(obj);
+            return this.noneOffsetColliding(obj);
         }
     }
 
@@ -57,6 +57,7 @@ class MovableObject extends DrawableObject {
             this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
+            return true
         }
     }
 
@@ -78,7 +79,7 @@ class MovableObject extends DrawableObject {
         return console.log('HTTP 301 models/world.class.js:71');
     }
 
-    playAnimation(images, slow) {
+    playAnimation(images) {
         let i = this.currentImage % images.length; // let i = 7 % 6; =>  1, Rest 1 
         let path = images[i];
         this.img = this.imageCache[path];

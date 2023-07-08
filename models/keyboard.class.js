@@ -9,13 +9,10 @@ class Keyboard {
 
     startTime = 0;
     endTime = 0;
-    timeSinceLastInput = this.endTime - this.startTime;
+    timeSinceLastInput = 0
 
     constructor() {
-        this.isInactive()
-        this.isActive()
 
-        this.measureTime()
     }
 
     isInactive() {
@@ -36,9 +33,13 @@ class Keyboard {
 
     measureTime() {
         setInterval(() => {
-            this.timeSinceLastInput = this.endTime - this.startTime;
-            this.timeSinceLastInput = this.timeSinceLastInput / 1000
-            console.log('timeElapsed: ', this.timeSinceLastInput);
+            //console.log('this.startTime: ', this.startTime);
+            //console.log('this.endTime: ', this.endTime);
+            //console.log('timeSinceLastInput: ', this.timeSinceLastInput);
+            if (this.endTime > -0) {
+                this.timeSinceLastInput = this.endTime - this.startTime;
+                this.timeSinceLastInput = this.timeSinceLastInput / 1000
+            }
         }, 500);
     }
 
