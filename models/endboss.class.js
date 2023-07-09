@@ -2,8 +2,10 @@ class Endboss extends MovableObject {
 
     height = 400;
     width = 250;
+    energy = 100;
     y = 55;
     isEndboss = true
+    animateWaleke;
 
     offset = {
         top: 0,
@@ -23,47 +25,45 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/2_alert/G12.png'
     ];
 
-    IMAGES_WALKING = [
-        'img/4_enemie_boss_chicken/2_alert/G5.png',
-        'img/4_enemie_boss_chicken/2_alert/G6.png',
-        'img/4_enemie_boss_chicken/2_alert/G7.png',
-        'img/4_enemie_boss_chicken/2_alert/G8.png',
-        'img/4_enemie_boss_chicken/2_alert/G9.png',
-        'img/4_enemie_boss_chicken/2_alert/G10.png',
-        'img/4_enemie_boss_chicken/2_alert/G11.png',
-        'img/4_enemie_boss_chicken/2_alert/G12.png'
+    IMAGES_DEAD = [
+        'img/4_enemie_boss_chicken/5_dead/G24.png',
+        'img/4_enemie_boss_chicken/5_dead/G24.png',
+        'img/4_enemie_boss_chicken/5_dead/G24.png'
     ];
 
     constructor() {
-        super().loadImage(this.IMAGES_WALKING[0]);
+        super()
         this.loadImages(this.IMAGES_WALKING);
         this.x = 2500;
-        this.animate();
+        this.animate(true);
     }
-
 
     animate() {
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_WALKING);
-        }, 200);
+        this.animateWaleke =
+            setInterval(() => {
+                this.playAnimation(this.IMAGES_WALKING);
+            }, 200);
     }
-    
-    dead() {
-        setInterval(() => {
-            if (this.energy == 0 || this.energy > 0) {
-                super.loadImage('img/9_intro_outro_screens/game_over/game over.png')
-                console.log("dwadwadwa")
-            }
-        }, 1000);
+
+    playDead() {
+        if (this.isDead()) {
+            this.loadImage('img/4_enemie_boss_chicken/5_dead/G24.png')
+            setTimeout(() => {
+                this.loadImage('img/4_enemie_boss_chicken/5_dead/G25.png')
+            }, 100);
+            setTimeout(() => {
+                this.loadImage('img/4_enemie_boss_chicken/5_dead/G26.png')
+
+            }, 100);
+        }
     }
 
     offsetColliding(obj) {
         console.log('this: ', this);
-        
+
         return this.x + this.width - this.offset.right > obj.x + obj.offset.left && // R -> L
             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top && // T -> B
             this.x + this.offset.left < obj.x + obj.width - obj.offset.right && // L -> R
             this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom; // B -> T
     }
-
 }

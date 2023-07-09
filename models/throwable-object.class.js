@@ -19,6 +19,7 @@ class ThrowableObject extends MovableObject {
     ]
     
     throw_sound = new Audio('audio/throw.mp3');
+    kaboom_sound = new Audio('audio/glass.mp3');
 
     constructor(x, y) {
         super().loadImage('img/6_salsa_bottle/salsa_bottle.png');
@@ -29,25 +30,19 @@ class ThrowableObject extends MovableObject {
         this.energy = 1
         this.loadImages(this.IMAGES_KABOOM);
         this.loadImages(this.IMAGES_ROTATE);
-        this.trow();
     }
 
-
     trow() {
-        this.AnimateRotation()
         this.speedY = 20;
         this.applyGravity();
         this.throw_sound.play();
-        setInterval(() => {
+        setInterval(() => { 
             this.x += 15;
         }, 25);
     }
 
-    AnimateRotation() {
-        
-    }
-
     AnimateKaboom() {
+        this.kaboom_sound.play();
         setInterval(() => {
             this.playAnimation(this.IMAGES_KABOOM);
         }, 50);

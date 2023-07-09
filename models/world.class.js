@@ -5,21 +5,16 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
+    gameover = new Gameover();
     statusBarHEALTH = new StatusBarHEALTH();
+    statusBarHEALTHENDBOSS = new StatusBarHEALTHENDBOSS();
     statusBarBOTTLE = new StatusBarBOTTLE();
     statusBarCOIN = new StatusBarCOIN();
     throwableObjects = [];
     isStarted = false
     endboss = this.level.enemies.length - 1
 
-    damage_sounds = [
-        new Audio('audio/damage.mp3'),
-        new Audio('audio/damage1.mp3'),
-        new Audio('audio/damage2.mp3'),
-        new Audio('audio/damage3.mp3')
-    ]
-
-    damage_sound;
+    damage_sound = new Audio('audio/damage.mp3')
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -32,12 +27,7 @@ class World {
 
     setWorld() {
         this.character.world = this;
-    }
-
-    damageSound(sounds) {
-        sounds.forEach(sound => {
-            this.damage_sound = this.damage_sounds[sound];
-        });
+        this.gameover.world = this;
     }
 
     run() {
@@ -45,7 +35,7 @@ class World {
             this.checkCollisionsEnemy();
         }, 10);
         setInterval(() => {
-            this.checkThrowObjects();
+            this.convertThrowObjects();
             this.checkCollisionsBottle();
             this.checkCollisionsCoin();
             this.checkCollisionsThrowObjects();
@@ -62,41 +52,50 @@ class World {
                 console.log('bottle: ', bottle);
                 console.log('this.throwableObjects: ', this.throwableObjects);
                 console.log('this.level.enemies[7].energy: ', this.level.enemies[this.endboss].energy);
-                bottle.energy -= 1
-
                 console.log('bottle.animateRotation: ', bottle.animateRotation);
+                bottle.x = 0
+                bottle.speedY = 0
+                bottle.energy -= 1                    
+                console.log('this.level.enemies[this.endboss].isDead == true: ', this.level.enemies[this.endboss].isDead == true);
+                this.level.enemies[this.endboss].energy -= 10
+                this.statusBarHEALTHENDBOSS.setPercentage(this.level.enemies[this.endboss].energy);
                 bottle.AnimateKaboom()
+                if (this.level.enemies[this.endboss].isDead() && world.gameover.gameOver == false) {
+                    world.gameover.gameover();
+                    this.level.enemies[this.endboss].playDead();
+                }
             }
         });
     }
 
-    checkThrowObjects() {
+    convertThrowObjects() {
         if (this.keyboard.D && this.statusBarBOTTLE.bottleCount > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.statusBarBOTTLE.bottleCount -= 1;
             this.throwableObjects.push(bottle);
+            bottle.trow()
             this.statusBarBOTTLE.setPath(this.statusBarBOTTLE.bottleCount);
         }
     }
 
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.isHurt() < 1) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.isHurt() < 1 && enemy.isEndboss !== true) {
                 if (enemy.isDead() == false && enemy.isEndboss == false) {
                     this.character.jumpOnHead();
                 }
-
                 enemy.energy -= 100
                 setTimeout(() => {
-                    this.removeDeads("enemies")
+                    if (enemy.isEndboss == true) {} else {this.removeDeads("enemies")}
                 }, 1000);
             } else if (this.character.isColliding(enemy) && enemy.isDead() == false) {
-                this.damageSound(this.damage_sounds);
                 this.damage_sound.play();
                 this.character.lastHit = 0;
                 this.character.hit();
                 this.keyboard.timeSinceLastInput = 0
                 this.statusBarHEALTH.setPercentage(this.character.energy);
+            } else if (this.character.isDead()) {
+                world.gameover.gameover();
             }
         });
 
@@ -147,6 +146,7 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
 
         this.addToMap(this.statusBarHEALTH);
+        this.addToMap(this.statusBarHEALTHENDBOSS);
         this.addToMap(this.statusBarBOTTLE);
         this.addToMap(this.statusBarCOIN);
 
@@ -161,7 +161,7 @@ class World {
 
         this.ctx.translate(-this.camera_x, 0);
 
-
+        this.addToMap(this.gameover);
         // Draw() wird immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {

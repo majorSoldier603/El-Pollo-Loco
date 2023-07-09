@@ -4,7 +4,6 @@ class Chickensmall extends MovableObject {
     height = 55;
     width = 70
     y = 360
-    world;
     isEndboss = false
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -48,6 +47,5 @@ class Chickensmall extends MovableObject {
                 this.moveStop();
             }
         }, 10);
-
     }
 }

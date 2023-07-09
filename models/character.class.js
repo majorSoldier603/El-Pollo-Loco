@@ -73,14 +73,14 @@ class Character extends MovableObject {
         right: 30
     }
 
+    charAnimateInt;
     world;
 
 
-    glass_sound = new Audio('audio/glass.mp3');
     jump_sound = new Audio('audio/jump.mp3');
-    loose_sound = new Audio('audio/loose.mp3');
+
     running_sound = new Audio('audio/running.mp3');
-    win_sound = new Audio('audio/win.mp3');
+
 
 
 
@@ -94,11 +94,12 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_HURT);
         this.applyGravity();
         this.animate();
+        this.dead()
     }
 
 
     animate() {
-        let charAnimateInt =
+        this.charAnimateInt =
             setInterval(() => {
                 this.running_sound.pause();
                 if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
@@ -122,10 +123,7 @@ class Character extends MovableObject {
 
 
         setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-                clearInterval(charAnimateInt)
-            } else if (this.isHurt()) {
+            if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             } else if (this.isAboveGround()) {
                 this.setPath();
@@ -140,6 +138,16 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_SLEEP);
             }
         }, 200);
+    }
+
+    dead() {
+        setInterval(() => {
+            console.log("this.isDead",this.isDead);
+            if (this.isDead()) {
+                this.playAnimation(this.IMAGES_DEAD);
+                clearInterval(this.charAnimateInt)
+            }
+        }, 500);
     }
 
     jump() {
