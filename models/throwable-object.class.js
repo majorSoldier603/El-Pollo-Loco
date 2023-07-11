@@ -32,12 +32,16 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.IMAGES_ROTATE);
     }
 
-    trow() {
+    trow(direction) {
         this.speedY = 20;
         this.applyGravity();
         this.throw_sound.play();
-        setInterval(() => { 
-            this.x += 15;
+        setInterval(() => {
+            if (direction == "right") {
+                this.x += 15;
+            } else {
+                this.x -= 15;
+            }
         }, 25);
     }
 

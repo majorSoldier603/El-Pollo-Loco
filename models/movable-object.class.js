@@ -4,7 +4,8 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 10000000000000;
+    //Defalt 1000               1000000000000 for testing
+    energy = 1000000000000;
     lastHit = 0;
     offset = {
         top: 0,

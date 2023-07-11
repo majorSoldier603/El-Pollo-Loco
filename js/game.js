@@ -2,12 +2,19 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 
-function init() {
+async function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
+    unMute()
     if (world.level.isStarted === true) {
         location.reload()
     }
+    overlayimgsjunglediff = document.getElementById("overlayimgsjunglediff")
+    playbnt = document.getElementById("playbnt")
+
+    overlayimgsjunglediff.appendChild(playbnt);
+    playbnt.className = "overlaybnts"
+
     world.level.isStarted = true;
     world.keyboard.isInactive()
     world.keyboard.isActive()
@@ -15,7 +22,7 @@ function init() {
     console.log('My Character is', world.character);
 }
 
-window.addEventListener("keydown", (e) => {
+let handlekeydown = (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
     }
@@ -23,7 +30,6 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 37) {
         keyboard.LEFT = true;
     }
-
 
     if (e.keyCode == 38) {
         keyboard.UP = true;
@@ -41,9 +47,12 @@ window.addEventListener("keydown", (e) => {
     if (e.keyCode == 68) {
         keyboard.D = true;
     }
-});
+    isGameOver("keydown", handlekeydown)
+}
 
-window.addEventListener("keyup", (e) => {
+
+let handlekeyup = (e) => {
+
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
     }
@@ -69,4 +78,25 @@ window.addEventListener("keyup", (e) => {
     if (e.keyCode == 68) {
         keyboard.D = false;
     }
-});
+    isGameOver("keyup", handlekeyup)
+}
+
+window.addEventListener("keydown", handlekeydown)
+window.addEventListener("keyup", handlekeyup)
+
+function isGameOver(isupdown, handleuporedown) {
+    setInterval(() => {
+        if (world !== undefined && world.gameover.gameOver == true) {
+            window.removeEventListener(isupdown, handleuporedown)
+
+            world.keyboard.D = false
+            world.keyboard.F = false
+            world.keyboard.DOWN = false
+            world.keyboard.LEFT = false
+            world.keyboard.RIGHT = false
+            world.keyboard.SPACE = false
+            world.keyboard.UP = false
+
+        }
+    }, 100);
+}

@@ -9,7 +9,7 @@ class Keyboard {
 
     startTime = 0;
     endTime = 0;
-    timeSinceLastInput = 0
+    timeSinceLastInput = -1;
 
     constructor() {
 
@@ -33,9 +33,6 @@ class Keyboard {
 
     measureTime() {
         setInterval(() => {
-            //console.log('this.startTime: ', this.startTime);
-            //console.log('this.endTime: ', this.endTime);
-            //console.log('timeSinceLastInput: ', this.timeSinceLastInput);
             if (this.endTime > -0) {
                 this.timeSinceLastInput = this.endTime - this.startTime;
                 this.timeSinceLastInput = this.timeSinceLastInput / 1000

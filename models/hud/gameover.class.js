@@ -35,6 +35,7 @@ class Gameover extends DrawableObject {
             this.y = 0;
             this.width = 720;
             this.height = 480;
+            this.gameOver = true
         }
     }
 }

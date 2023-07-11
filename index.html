@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/8_coin/coin_1.png" type="image/x-icon">
-    <title>Document</title>
+    <title>EL POLLO LOCO</title>
     <script src="models/drawable-object.class.js"></script>
     <script src="models/movable-object.class.js"></script>
     <script src="models/character.class.js"></script>
@@ -32,31 +32,28 @@
     <script src="js/game.js"></script>
 </head>
 
-<body onload="" class="center" oncontextmenu="return true;">
+<body onload="" class="center" oncontextmenu="return false;">
 
-    <title class="d-nmw900 title">EL POLLO LOCO</title>
+    <title class="d-nmaxw900 title">El Pollo Loco</title>
 
     <section title="canvas" class="center canvasSec" id="canvasSec">
 
         <section title="topsec" id="overlayimgsjunglediff" style="top: 25px;">
-
-            <button type="button" class="overlaybnts" onclick="init()" onkeydown="return false">
-                <img src="img/11_overlay/play.png" class="overlaybntsims" alt="" srcset="">
-            </button>
             <button type="button" class="overlaybnts" id="soundMasterBnt" onclick="unMute()" onkeydown="return false">
                 <img src="img/11_overlay/mute.png" class="overlaybntsims" alt="" srcset="">
             </button>
             <button type="button" class="overlaybnts" id="overlaybnts" onclick="fullscreen()" onkeydown="return false">
                 <img src="img/11_overlay/fullscreen.png" class="overlaybntsims" alt="" srcset="">
             </button>
-
         </section>
 
+        <button type="button" id="playbnt" class="playbnt overlaybnts" onclick="init()" onkeydown="return false">
+            <img src="img/11_overlay/play.png" class="overlaybntsims" alt="" srcset="">
+        </button>
 
         <canvas id="canvas" width="720" height="480"></canvas>
 
-        <section title="downsec" id="overlayimgsjunglediff"
-            style="bottom: 25px;  right: 0; width: 100%; display: flex; justify-content: center;">
+        <section title="downsec"  class="overlayimgsjunglediff d-nminw900">
 
             <div style="width: 95%; display: flex; justify-content: space-between;">
 
@@ -89,7 +86,7 @@
 
 
     </section>
-    <section class="undersec" title="undersec">
+    <section class="undersec d-nmaxw900" title="undersec">
         <div
             style="height: 5vh; font-size: 2vw; max-width: 100%; display: flex; justify-content: space-around; align-items: center;">
             <span class="undersectext">D = Throw </span>

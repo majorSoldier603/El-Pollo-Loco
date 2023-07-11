@@ -9,7 +9,7 @@ class StatusBarBOTTLE extends DrawableObject {
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/100.png' // 5
     ];
 
-    bottleCount = 1000;
+    bottleCount = 0;
     
 
     constructor() {
