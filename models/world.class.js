@@ -17,6 +17,7 @@ class World {
     timeSinceLastThrow;
     timeSinceLastThrowInSec;
 
+
     damage_sound = new Audio('audio/damage.mp3')
 
     constructor(canvas, keyboard) {
@@ -38,6 +39,7 @@ class World {
         this.character.world = this;
         this.gameover.world = this;
         this.level.enemies[this.endboss].world = this;
+        this.level.enemies[0].world = this;
     }
 
     run() {
@@ -71,7 +73,6 @@ class World {
     }
 
     convertThrowObjects() {
-
         if (this.keyboard.D == true && this.statusBarBOTTLE.bottleCount > 0 && this.timeSinceLastThrowInSec > 1) {
             this.timeSinceLastThrow = 0;
             this.timeSinceLastThrowInSec = 0;
@@ -206,5 +207,8 @@ class World {
         this.ctx.restore();
     }
 
+    clearAllIntervals() {
+        for (let i = 1; i < 9999; i++) window.clearInterval(i);
+    }
 
 }

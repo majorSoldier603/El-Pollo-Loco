@@ -17,6 +17,8 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/3_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/4_bottle_rotation.png'
     ]
+
+    world;
     
     throw_sound = new Audio('audio/throw.mp3');
     kaboom_sound = new Audio('audio/glass.mp3');
@@ -32,15 +34,15 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.IMAGES_ROTATE);
     }
 
-    trow(direction) {
+    trow() {
         this.speedY = 20;
         this.applyGravity();
         this.throw_sound.play();
         setInterval(() => {
-            if (direction == "right") {
-                this.x += 15;
-            } else {
+            if (world.character.otherDirection  == true) {
                 this.x -= 15;
+            } else {
+                this.x += 15;
             }
         }, 25);
     }

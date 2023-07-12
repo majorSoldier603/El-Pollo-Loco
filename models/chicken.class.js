@@ -31,7 +31,7 @@ class Chicken extends MovableObject {
     animate() {
         setInterval(() => {
             try {
-                if (world.level.isStarted === true) {
+                if (world.level.isStarted === true && !world.character.isDead()) {
                     this.moveLeft();
                 }
             } catch (e) {

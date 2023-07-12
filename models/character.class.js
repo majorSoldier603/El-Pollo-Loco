@@ -4,7 +4,12 @@ class Character extends MovableObject {
     y = 150;
     speed = 5;
     isHurting = false
+
+    cameraSlider = 100
+    isCameraMoving = false
+
     deadhasbeninrun = 0
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -124,7 +129,7 @@ class Character extends MovableObject {
                     this.jump();
                 }
 
-                this.world.camera_x = -this.x + 100;
+                this.cameraSliderFn()
             }, 1000 / 144);
 
 
@@ -150,12 +155,29 @@ class Character extends MovableObject {
         }, 200);
     }
 
+    cameraSliderFn() {
+        if (this.world.level.enemies[this.world.endboss].x - this.x > 0 && !this.isDead()) {
+            this.cameraSlider = 100
+        //    setInterval(() => {
+        //        this.cameraSlider++
+        //    }, 10);
+        }
+        if (this.world.level.enemies[this.world.endboss].x - this.x < -0 && !this.isDead()) {
+            this.cameraSlider = 500
+        //    setInterval(() => {
+          //      this.cameraSlider--
+            //}, 10);
+        }
+        this.world.camera_x = - this.x + this.cameraSlider;
+    }
+
     dead() {
         setInterval(() => {
             if (this.isDead() && this.deadhasbeninrun < 5) {
                 clearInterval(this.charAnimateInt)
+                this.world.clearAllIntervals()
                 this.playAnimation(this.IMAGES_DEAD)
-                this.deadhasbeninrun ++
+                this.deadhasbeninrun++
             }
         }, 100);
     }

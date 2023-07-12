@@ -18,7 +18,9 @@ body {
 
 .title {
     display: flex;
-    font-size: 5vw;
+    font-size: 6vw;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 1,5);
+    font-family: 'zabars', Arial, Helvetica, sans-serif;
 }
 
 

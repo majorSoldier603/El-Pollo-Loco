@@ -7,6 +7,7 @@ class Endboss extends MovableObject {
     speed = 1
     isEndboss = true
     animateWaleke;
+    animateWaleke1;
     world;
 
     offset = {
@@ -62,18 +63,19 @@ class Endboss extends MovableObject {
     animate() {
         this.animateWaleke =
             setInterval(() => {
-                this.playAnimation(this.IMAGES_WALKING);
-            }, 90);
-        if (this.world) {
 
-        }
+                    this.playAnimation(this.IMAGES_WALKING);
+
+            }, 90);
+
+            this.animateWaleke1 =
         setInterval(() => {
             if (this.world) {
-                if (this.world.character.x - this.x > 0 && !this.isDead()) {
+                if (this.world.character.x - this.x > 0) {
                     this.moveRight();
                     this.otherDirection = true;
                 }
-                if (this.world.character.x - this.x < -0 && !this.isDead()) {
+                if (this.world.character.x - this.x < -0) {
                     this.moveLeft();
                     this.otherDirection = false;
                 }
