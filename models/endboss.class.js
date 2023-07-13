@@ -5,9 +5,9 @@ class Endboss extends MovableObject {
     energy = 100;
     y = 55;
     speed = 1
+    
     isEndboss = true
-    animateWaleke;
-    animateWaleke1;
+
     world;
 
     offset = {
@@ -55,20 +55,42 @@ class Endboss extends MovableObject {
     constructor() {
         super()
         this.loadImages(this.IMAGES_ATTACK);
+        this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_WALKING);
         this.x = 2500;
         this.animate()
+        this.moveing()
+
+
+
     }
 
     animate() {
-        this.animateWaleke =
-            setInterval(() => {
+        this.animateAttackInterval =
+        setInterval(() => {
+            if (this.isHurt()) {
+                this.animateAlert();
+            } else {
+                this.animateWaleke();
+            }
+        }, 100);
+    }
 
-                    this.playAnimation(this.IMAGES_WALKING);
+    animateWaleke() {
+        this.playAnimation(this.IMAGES_WALKING);
+    }
 
-            }, 90);
+    animateAttack() {
+        this.playAnimation(this.IMAGES_ATTACK)
+    }
 
-            this.animateWaleke1 =
+    animateAlert() {
+        this.playAnimation(this.IMAGES_ALERT)
+    }
+
+
+
+    moveing() {
         setInterval(() => {
             if (this.world) {
                 if (this.world.character.x - this.x > 0) {
@@ -97,11 +119,85 @@ class Endboss extends MovableObject {
     }
 
     offsetColliding(obj) {
-        console.log('this: ', this);
-
         return this.x + this.width - this.offset.right > obj.x + obj.offset.left && // R -> L
             this.y + this.height - this.offset.bottom > obj.y + obj.offset.top && // T -> B
             this.x + this.offset.left < obj.x + obj.width - obj.offset.right && // L -> R
             this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom; // B -> T
     }
+
+    /* 5 Stunden
+        setInterval(() => {
+            if (this.world) {
+                console.log('console: ', );
+                //console.log(this.world.character.x - this.x < -0 && this.world.character.x - this.x > -100 || this.world.character.x - !this.x > 0 && this.world.character.x - !this.x < 250 == false)
+                console.log(this.world.character.x - this.x < 250);
+                console.log(this.world.character.x - !this.x > 0);
+                console.log(this.world.character.x - !this.x > -100);
+                console.log(this.world.character.x - this.x < -0);
+                console.log('console: ', );
+
+                if (this.world.character.x - this.x > 0 && this.world.character.x - this.x < 250) {
+                    this.playAnimation(this.IMAGES_ATTACK)
+                    clearInterval(this.animateWaleke)
+                } else if (this.world.character.x - this.x < -0 && this.world.character.x - this.x > -100) {
+                    this.playAnimation(this.IMAGES_ATTACK)
+                    clearInterval(this.animateWaleke)
+                } else if (this.world.character.x - this.x == 0) {
+                    this.playAnimation(this.IMAGES_ATTACK)
+                    clearInterval(this.animateWaleke)
+                } else if () {
+                    console.log("true");
+                    setInterval(this.animateWaleke)
+
+                }         
+            }
+        }, 100);
+    */
+
+    /*
+animate() {
+    if (this.world) {
+        startAnimateInterval()
+        animateAttackInterval()
+    }
+}
+
+startAnimateInterval() {
+    this.animateInterval =
+        setInterval(() => {
+            if (this.isHurt()) {
+                this.animateAlert();
+            } else {
+                this.animateWaleke();
+            }
+        }, 100);
+}
+
+animateAttackInterval() {
+    this.animateAttackInterval =
+        setInterval(() => {
+            if ( // calculate if the character is in a specific range from -100 to 250 from the end boss
+                this.world.character.x - this.x < -0 && this.world.character.x - this.x > -100 ||
+                this.world.character.x - this.x > 0 && this.world.character.x - this.x < 250
+            ) {
+                clearInterval(this.animateInterval)
+                this.animateAttack()
+            }
+        }, 100);
+}
+
+animateWaleke() {
+    this.playAnimation(this.IMAGES_WALKING);
+}
+
+animateAttack() {
+    this.playAnimation(this.IMAGES_ATTACK)
+    setInterval(this.dadwa)
+}
+
+animateAlert() {
+    this.playAnimation(this.IMAGES_ALERT)
+}
+
+*/
 }

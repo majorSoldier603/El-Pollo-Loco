@@ -19,7 +19,7 @@ async function init() {
     world.keyboard.isInactive()
     world.keyboard.isActive()
     world.keyboard.measureTime()
-    console.log('My Character is', world.character);
+    //console.log('My Character is', world.character);
 }
 
 let handlekeydown = (e) => {

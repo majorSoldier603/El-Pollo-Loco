@@ -8,8 +8,6 @@ class Gameover extends DrawableObject {
 
     constructor() {
         super();
-        console.log('this: ', this);
-
         this.loadImage('img/9_intro_outro_screens/game_over/game over.png');
         this.x = 0;
         this.y = 0;
@@ -25,8 +23,6 @@ class Gameover extends DrawableObject {
             this.y = 0;
             this.width = 720;
             this.height = 480;
-            clearInterval(this.world.character.charAnimateInt)
-            clearInterval(this.world.level.enemies[this.endboss].animateWaleke)
             this.win_sound.play();
             this.gameOver = true
         } else if (this.world.character.isDead()) {

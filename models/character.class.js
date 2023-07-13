@@ -3,8 +3,8 @@ class Character extends MovableObject {
     height = 250;
     y = 150;
     speed = 5;
-    isHurting = false
-
+    cameraRight;
+    cameraLeft;
     cameraSlider = 100
     isCameraMoving = false
 
@@ -101,6 +101,7 @@ class Character extends MovableObject {
         this.applyGravity();
         this.animate();
         this.dead()
+        this.cameraSliderFn()
     }
 
 
@@ -128,8 +129,6 @@ class Character extends MovableObject {
                 if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                     this.jump();
                 }
-
-                this.cameraSliderFn()
             }, 1000 / 144);
 
 
@@ -156,19 +155,23 @@ class Character extends MovableObject {
     }
 
     cameraSliderFn() {
-        if (this.world.level.enemies[this.world.endboss].x - this.x > 0 && !this.isDead()) {
-            this.cameraSlider = 100
-        //    setInterval(() => {
-        //        this.cameraSlider++
-        //    }, 10);
-        }
-        if (this.world.level.enemies[this.world.endboss].x - this.x < -0 && !this.isDead()) {
-            this.cameraSlider = 500
-        //    setInterval(() => {
-          //      this.cameraSlider--
-            //}, 10);
-        }
-        this.world.camera_x = - this.x + this.cameraSlider;
+        setInterval(() => {
+            if (world) {
+                if (this.world.level.enemies[this.world.endboss].x - this.x > 0 && !this.isDead()) {
+                    if (this.cameraSlider > 99) {
+                        this.cameraSlider--
+                    }
+                }
+                if (this.world.level.enemies[this.world.endboss].x - this.x < -0 && !this.isDead()) {
+                    if (this.cameraSlider < 501) {
+                        this.cameraSlider++
+                    }
+                }
+            }
+        }, 0.1);
+        setInterval(() => {
+            this.world.camera_x = - this.x + this.cameraSlider;
+        }, 1000 / 144);
     }
 
     dead() {

@@ -4,9 +4,10 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    //Defalt 1000               1000000000000 for testing
-    energy = 1000000000000;
+    timepassedSinceIsHurt
+    energy = 1000;
     lastHit = 0;
+    applyGravityInterval
     offset = {
         top: 0,
         bottom: 0,
@@ -15,6 +16,7 @@ class MovableObject extends DrawableObject {
     }
 
     applyGravity() {
+        this.applyGravityInterval =
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
@@ -52,8 +54,11 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom; // B -> T
     }
 
-    hit() {
-        this.energy -= 5;
+    hit(DamagegagaeLUL) {
+        if (DamagegagaeLUL = 20) {
+            //debugger
+        }
+        this.energy -= DamagegagaeLUL;
         if (this.energy < 0) {
             this.energy = 0;
         } else {
@@ -65,6 +70,7 @@ class MovableObject extends DrawableObject {
     isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // Difference in ms
         timepassed = timepassed / 1000; // Difference in s
+        this.timepassedSinceIsHurt = timepassed
         return timepassed < 1;
     }
 

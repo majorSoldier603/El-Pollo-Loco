@@ -1,6 +1,7 @@
 class ThrowableObject extends MovableObject {
 
     animateRotation = setInterval(() => {this.playAnimation(this.IMAGES_ROTATE);}, 50);
+    otherDirection;
 
     IMAGES_KABOOM = [
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png',
@@ -19,6 +20,7 @@ class ThrowableObject extends MovableObject {
     ]
 
     world;
+    throwInterval;
     
     throw_sound = new Audio('audio/throw.mp3');
     kaboom_sound = new Audio('audio/glass.mp3');
@@ -34,24 +36,27 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.IMAGES_ROTATE);
     }
 
-    trow() {
+    throw() {
         this.speedY = 20;
         this.applyGravity();
         this.throw_sound.play();
+        this.otherDirection = world.character.otherDirection
+        this.throwInterval =
         setInterval(() => {
-            if (world.character.otherDirection  == true) {
+            if (this.otherDirection == true) {
                 this.x -= 15;
             } else {
                 this.x += 15;
             }
         }, 25);
+
     }
 
     AnimateKaboom() {
         this.kaboom_sound.play();
         setInterval(() => {
             this.playAnimation(this.IMAGES_KABOOM);
-        }, 50);
+        }, 200);
     }
 
 }

@@ -57,13 +57,24 @@ class World {
 
     checkCollisionsThrowObjects() {
         this.throwableObjects.forEach((bottle) => {
-            if (this.level.enemies[this.endboss].isColliding(bottle)) {
-                bottle.x = 0
-                bottle.speedY = 0
+            if (!bottle.y > 180) {
                 bottle.energy -= 1
-                this.level.enemies[this.endboss].energy -= 20
+            }
+            if (this.level.enemies[this.endboss].isColliding(bottle)) {
+                if (bottle.energy > 0) {
+                    this.level.enemies[this.endboss].lastHit = 0;
+                    this.level.enemies[this.endboss].hit(20)
+                }
                 this.statusBarHEALTHENDBOSS.setPercentage(this.level.enemies[this.endboss].energy);
+                clearInterval(bottle.throwInterval)
+                clearInterval(bottle.applyGravityInterval)
+                clearInterval(bottle.animateRotation)
                 bottle.AnimateKaboom()
+                bottle.energy -= 1
+                setTimeout(() => {
+                    this.removeDeads("bottle")
+                }, 500);
+
                 if (this.level.enemies[this.endboss].isDead() && world.gameover.gameOver == false) {
                     world.gameover.gameover();
                     this.level.enemies[this.endboss].playDead();
@@ -80,14 +91,14 @@ class World {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.statusBarBOTTLE.bottleCount -= 1;
             this.throwableObjects.push(bottle);
-            bottle.trow()
+            bottle.throw()
             this.statusBarBOTTLE.setPath(this.statusBarBOTTLE.bottleCount);
         }
     }
 
     checkCollisionsEnemy() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.isHurt() < 1 && enemy.isEndboss !== true) {
+            if (this.character.isColliding(enemy) && this.character.isAboveGround() && this.character.timepassedSinceIsHurt > 0.5 && enemy.isEndboss !== true) {
                 if (enemy.isDead() == false && enemy.isEndboss == false) {
                     this.character.jumpOnHead();
                 }
@@ -98,7 +109,7 @@ class World {
             } else if (this.character.isColliding(enemy) && enemy.isDead() == false) {
                 this.damage_sound.play();
                 this.character.lastHit = 0;
-                this.character.hit();
+                this.character.hit(5);
                 this.keyboard.timeSinceLastInput = 0
                 this.statusBarHEALTH.setPercentage(this.character.energy / 10);
             } else if (this.character.isDead()) {
@@ -133,6 +144,9 @@ class World {
 
     removeDeads(obj) {
         let arr = world.level[obj]
+        if (obj == "bottle") {
+            arr = this.throwableObjects
+        }
         for (let i = 0; i < arr.length; i++) {
             if (arr[i] == undefined || arr[i].isDead() == true) {
                 delete arr[i]
