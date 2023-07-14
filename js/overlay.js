@@ -42,9 +42,3 @@ function up(value) {
 function throws(value) {
     keyboard.D = value;
 }
-/* commented for testing because it blocks right click so inspect element does not work
-// Disable the default context menu on the document
-document.addEventListener('contextmenu', function (event) {
-    event.preventDefault();
-});
-*/

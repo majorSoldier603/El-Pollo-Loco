@@ -106,32 +106,39 @@ class Character extends MovableObject {
 
 
     animate() {
+        this.animateMovement()
+        this.animateDamage()
+        this.animateInactive()
+    }
+
+    animateMovement() {
         this.charAnimateInt =
-            setInterval(() => {
-                this.running_sound.pause();
-                if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                    this.moveRight();
-                    this.otherDirection = false;
-                    if (this.world.keyboard.SPACE == false && !this.isAboveGround()) {
-                        this.running_sound.play();
-                    }
+        setInterval(() => {
+            this.running_sound.pause();
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                this.moveRight();
+                this.otherDirection = false;
+                if (this.world.keyboard.SPACE == false && !this.isAboveGround()) {
+                    this.running_sound.play();
                 }
+            }
 
-                if (this.world.keyboard.LEFT && this.x > 0) {
-                    this.moveLeft();
+            if (this.world.keyboard.LEFT && this.x > 0) {
+                this.moveLeft();
 
-                    if (this.world.keyboard.SPACE == false && !this.isAboveGround()) {
-                        this.running_sound.play();
-                    }
-                    this.otherDirection = true;
+                if (this.world.keyboard.SPACE == false && !this.isAboveGround()) {
+                    this.running_sound.play();
                 }
+                this.otherDirection = true;
+            }
 
-                if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                    this.jump();
-                }
-            }, 1000 / 144);
+            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.jump();
+            }
+        }, 1000 / 144);
+    }
 
-
+    animateDamage() {
         setInterval(() => {
             if (!this.isDead()) {
                 if (this.isHurt()) {
@@ -143,6 +150,9 @@ class Character extends MovableObject {
                 }
             }
         }, 50);
+    }
+
+    animateInactive() {
         setInterval(() => {
             if (!this.isDead()) {
                 if (this.world.keyboard.timeSinceLastInput < -0 && this.world.keyboard.timeSinceLastInput > -9) {

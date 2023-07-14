@@ -5,7 +5,7 @@ class MovableObject extends DrawableObject {
     speedY = 0;
     acceleration = 2.5;
     timepassedSinceIsHurt
-    energy = 1000;
+    energy = 2000;
     lastHit = 0;
     applyGravityInterval
     offset = {
@@ -54,11 +54,8 @@ class MovableObject extends DrawableObject {
             this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom; // B -> T
     }
 
-    hit(DamagegagaeLUL) {
-        if (DamagegagaeLUL = 20) {
-            //debugger
-        }
-        this.energy -= DamagegagaeLUL;
+    hit(damageNum) {
+        this.energy -= damageNum;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

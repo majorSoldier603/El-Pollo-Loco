@@ -107,6 +107,7 @@ class Endboss extends MovableObject {
 
     playDead() {
         if (this.isDead()) {
+            this.world.clearAllIntervals()
             this.loadImage('img/4_enemie_boss_chicken/5_dead/G24.png')
             setTimeout(() => {
                 this.loadImage('img/4_enemie_boss_chicken/5_dead/G25.png')
@@ -117,87 +118,4 @@ class Endboss extends MovableObject {
             }, 1000 / 144);
         }
     }
-
-    offsetColliding(obj) {
-        return this.x + this.width - this.offset.right > obj.x + obj.offset.left && // R -> L
-            this.y + this.height - this.offset.bottom > obj.y + obj.offset.top && // T -> B
-            this.x + this.offset.left < obj.x + obj.width - obj.offset.right && // L -> R
-            this.y + this.offset.top < obj.y + obj.height - obj.offset.bottom; // B -> T
-    }
-
-    /* 5 Stunden
-        setInterval(() => {
-            if (this.world) {
-                console.log('console: ', );
-                //console.log(this.world.character.x - this.x < -0 && this.world.character.x - this.x > -100 || this.world.character.x - !this.x > 0 && this.world.character.x - !this.x < 250 == false)
-                console.log(this.world.character.x - this.x < 250);
-                console.log(this.world.character.x - !this.x > 0);
-                console.log(this.world.character.x - !this.x > -100);
-                console.log(this.world.character.x - this.x < -0);
-                console.log('console: ', );
-
-                if (this.world.character.x - this.x > 0 && this.world.character.x - this.x < 250) {
-                    this.playAnimation(this.IMAGES_ATTACK)
-                    clearInterval(this.animateWaleke)
-                } else if (this.world.character.x - this.x < -0 && this.world.character.x - this.x > -100) {
-                    this.playAnimation(this.IMAGES_ATTACK)
-                    clearInterval(this.animateWaleke)
-                } else if (this.world.character.x - this.x == 0) {
-                    this.playAnimation(this.IMAGES_ATTACK)
-                    clearInterval(this.animateWaleke)
-                } else if () {
-                    console.log("true");
-                    setInterval(this.animateWaleke)
-
-                }         
-            }
-        }, 100);
-    */
-
-    /*
-animate() {
-    if (this.world) {
-        startAnimateInterval()
-        animateAttackInterval()
-    }
-}
-
-startAnimateInterval() {
-    this.animateInterval =
-        setInterval(() => {
-            if (this.isHurt()) {
-                this.animateAlert();
-            } else {
-                this.animateWaleke();
-            }
-        }, 100);
-}
-
-animateAttackInterval() {
-    this.animateAttackInterval =
-        setInterval(() => {
-            if ( // calculate if the character is in a specific range from -100 to 250 from the end boss
-                this.world.character.x - this.x < -0 && this.world.character.x - this.x > -100 ||
-                this.world.character.x - this.x > 0 && this.world.character.x - this.x < 250
-            ) {
-                clearInterval(this.animateInterval)
-                this.animateAttack()
-            }
-        }, 100);
-}
-
-animateWaleke() {
-    this.playAnimation(this.IMAGES_WALKING);
-}
-
-animateAttack() {
-    this.playAnimation(this.IMAGES_ATTACK)
-    setInterval(this.dadwa)
-}
-
-animateAlert() {
-    this.playAnimation(this.IMAGES_ALERT)
-}
-
-*/
 }

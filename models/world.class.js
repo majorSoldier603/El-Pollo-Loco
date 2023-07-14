@@ -111,7 +111,7 @@ class World {
                 this.character.lastHit = 0;
                 this.character.hit(5);
                 this.keyboard.timeSinceLastInput = 0
-                this.statusBarHEALTH.setPercentage(this.character.energy / 10);
+                this.statusBarHEALTH.setPercentage(this.character.energy / 20);
             } else if (this.character.isDead()) {
                 world.gameover.gameover();
             }
@@ -160,25 +160,15 @@ class World {
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
 
-
-
-
         // ------ Space for fixed objects ------
         this.addObjectsToMap(this.level.clouds);
         this.ctx.translate(-this.camera_x, 0);
 
-        this.addToMap(this.statusBarHEALTH);
-        this.addToMap(this.statusBarHEALTHENDBOSS);
-        this.addToMap(this.statusBarBOTTLE);
-        this.addToMap(this.statusBarCOIN);
+        this.drawOverlay()
 
         this.ctx.translate(this.camera_x, 0);
 
-        this.addToMap(this.character);
-        this.addObjectsToMap(this.level.bottles);
-        this.addObjectsToMap(this.level.coins);
-        this.addObjectsToMap(this.level.enemies);
-        this.addObjectsToMap(this.throwableObjects);
+        this.drawInteractives()
 
         this.ctx.translate(-this.camera_x, 0);
 
@@ -188,6 +178,21 @@ class World {
         requestAnimationFrame(function () {
             self.draw();
         });
+    }
+
+    drawOverlay() {
+        this.addToMap(this.statusBarHEALTH);
+        this.addToMap(this.statusBarHEALTHENDBOSS);
+        this.addToMap(this.statusBarBOTTLE);
+        this.addToMap(this.statusBarCOIN);
+    }
+
+    drawInteractives() {
+        this.addToMap(this.character);
+        this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.throwableObjects);
     }
 
     addObjectsToMap(objects) {

@@ -39,7 +39,6 @@ let handlekeydown = (e) => {
         keyboard.DOWN = true;
     }
 
-
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
     }
@@ -61,7 +60,6 @@ let handlekeyup = (e) => {
         keyboard.LEFT = false;
     }
 
-
     if (e.keyCode == 38) {
         keyboard.UP = false;
     }
@@ -69,7 +67,6 @@ let handlekeyup = (e) => {
     if (e.keyCode == 40) {
         keyboard.DOWN = false;
     }
-
 
     if (e.keyCode == 32) {
         keyboard.SPACE = false;
