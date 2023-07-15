@@ -32,16 +32,16 @@ class StatusBarBOTTLE extends DrawableObject {
     resolveImageIndex() {
         if (this.bottleCount == 0) {
             return 0;
-        } else if (this.bottleCount == 4) {
+        } else if (this.bottleCount == 7) {
+            return 5;
+        } else if (this.bottleCount >= 5) {
             return 4;
-        } else if (this.bottleCount == 3) {
+        } else if (this.bottleCount >= 3) {
             return 3;
         } else if (this.bottleCount == 2) {
             return 2;
         } else if (this.bottleCount == 1) {
             return 1;
-        } else {
-            return 5;
         }
     }
 }
